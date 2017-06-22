@@ -1,0 +1,1 @@
+This project is the Homework project for JS lessons for ITStep Academy.
