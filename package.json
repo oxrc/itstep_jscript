@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/oxrc/itstep_jscript#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "express-vue": "^3.14.3"
   }
 }
