@@ -11,3 +11,20 @@ body{
 .page-wrapper{
     height:100vh;
 }
+#tables_users{
+        padding-top: 64px;
+}
+
+#tables_users #btn_delete{
+  border: 1px solid #42b6f4;
+  border-radius: 12px;
+  background: none;
+  padding: 8px 17px 8px 17px;
+  text-decoration: none;
+}
+#tables_users #btn_edit{
+  border: 1px solid #42b6f4;
+  border-radius: 12px;
+  background: none;
+  padding: 8px 17px 8px 17px;
+}
