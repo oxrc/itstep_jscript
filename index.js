@@ -4,47 +4,37 @@ const expressVue = require('express-vue');
 const app = express();
 
 
-app.engine('vue', expressVue);
-app.set('view engine', 'vue');
-app.set('views', path.join(__dirname, '/vue/views'));
+app.engine('vue', expressVue)
+app.set('view engine', 'vue')
+app.set('views', path.join(__dirname, '/vue/views'))
 app.set('vue', {
     componentsDir: path.join(__dirname, '/vue/components'),
     defaultLayout: 'layout'
-});
-app.use(express.static(path.join(__dirname, 'public')));
+})
+app.use(express.static(path.join(__dirname, 'public')))
+
+
 
 
 //Main page
-/*app.get('/', function(req, res){
-     var scope = {
-        vue: {
-            head: {
-                title: 'Hello Vue',
-                meta: [
-                    { property:'og:title', content: 'pageTitle'},
-                    { name:'twitter:title', content: 'pageTitle'}
-                ]
-            }
-        }
-    };
-    res.render('main', scope)
-});*/
-app.get('/', function(req, res){
-    res.render('layout')
+app.get('/vue/main', function(req, res){
+    res.render('main')
 });
 
-const name = "fekw";
 //Add user
-app.get('/adduser', function(req, res){
-     res.render('add_user', {
-         data:{
-           title: 'Add user',
-           name: name
-         }
-     })
-})
+app.get('/vue/main/adduser', function(req, res){
+    var scope = {
+        data: {
+            title: 'Add user'
+        }
+    }
+    res.render('add_user', scope)
+});
 
-
+//Add interes
+app.get('/vue/main/addinteres', function(req, res){
+     res.render('add_interes')
+});
 
 
 // Vue.js pages will be routed here.
