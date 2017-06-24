@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 const expressVue = require('express-vue');
 const app = express();
@@ -5,37 +6,41 @@ const app = express();
 
 app.engine('vue', expressVue);
 app.set('view engine', 'vue');
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, '/vue/views'));
 app.set('vue', {
     componentsDir: path.join(__dirname, '/vue/components'),
     defaultLayout: 'layout'
 });
 
 
-app.engine('vue', expressVue);
-app.set('view engine', 'vue');
-
-app.get('/', (req, res)  {
-  var scope = {
+app.get('/', function(req, res){
+     var scope = {
         data: {
-            title: pageTitle,
+            title: 'Hello Vue',
             message: 'Hello!'
         },
         vue: {
             head: {
-                title: pageTitle,
+                title: 'Hello Vue',
                 meta: [
-                    { property:'og:title', content: pageTitle},
-                    { name:'twitter:title', content: pageTitle}
-                 ]
+                    { property:'og:title', content: 'pageTitle'},
+                    { name:'twitter:title', content: 'pageTitle'}
+                ],
+                structuredData: {
+                    "@context": "http://schema.org",
+                    "@type": "Organization",
+                    "url": "http://www.your-company-site.com",
+                    "contactPoint": [{
+                        "@type": "ContactPoint",
+                        "telephone": "+1-401-555-1212",
+                        "contactType": "customer service"
+                    }]
                 }
-            },
-            mixins: [exampleMixin]
+            }
         }
     };
     res.render('main', scope);
-  });
-})
+});
 
 
 
