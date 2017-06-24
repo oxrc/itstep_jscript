@@ -13,34 +13,32 @@ app.set('vue', {
 });
 
 
+//Main page
 app.get('/', function(req, res){
      var scope = {
-        data: {
-            title: 'Hello Vue',
-            message: 'Hello!'
-        },
         vue: {
             head: {
                 title: 'Hello Vue',
                 meta: [
                     { property:'og:title', content: 'pageTitle'},
                     { name:'twitter:title', content: 'pageTitle'}
-                ],
-                structuredData: {
-                    "@context": "http://schema.org",
-                    "@type": "Organization",
-                    "url": "http://www.your-company-site.com",
-                    "contactPoint": [{
-                        "@type": "ContactPoint",
-                        "telephone": "+1-401-555-1212",
-                        "contactType": "customer service"
-                    }]
-                }
+                ]
             }
         }
     };
-    res.render('main', scope);
+    res.render('main', scope)
 });
+
+const name = "fekw";
+//Add user
+app.get('/adduser', function(req, res){
+     res.render('add_user', {
+         data:{
+           title: 'Add user',
+           name: name
+         }
+     })
+})
 
 
 
