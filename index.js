@@ -11,10 +11,11 @@ app.set('vue', {
     componentsDir: path.join(__dirname, '/vue/components'),
     defaultLayout: 'layout'
 });
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Main page
-app.get('/', function(req, res){
+/*app.get('/', function(req, res){
      var scope = {
         vue: {
             head: {
@@ -27,6 +28,9 @@ app.get('/', function(req, res){
         }
     };
     res.render('main', scope)
+});*/
+app.get('/', function(req, res){
+    res.render('layout')
 });
 
 const name = "fekw";
