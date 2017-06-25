@@ -21,8 +21,8 @@
                      </form>
                      <ul>
                         <li><a href=""><span class="fa fa-eraser"></span> Clear</a></li>
-                        <li><a href="/vue/main/adduser"><span class="fa fa-user-plus"></span> Add User</a></li>
-                        <li><a href="/vue/main/addinteres"><span class="fa fa-paper-plane"></span> Add interes</a></li>
+                        <li><a href="/vue/adduser"><span class="fa fa-user-plus"></span> Add User</a></li>
+                        <li><a href="/vue/addinteres"><span class="fa fa-paper-plane"></span> Add interes</a></li>
                      </ul>
                  </div>
                  <div class="col-lg-7 col-md-12" id="tables_users">

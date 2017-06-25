@@ -117,12 +117,59 @@ body{
     margin-right: 69px;
 }
 
+#add_user_content{
+    padding-top: 40px;
+}
+#add_user_content input{
+    text-align: center;
+    border-radius: 20px;
+    border:2px solid #00FFDE;
+    padding: 8px 12px 8px 12px;
+    font-weight: 600;
+    color: #777c84;
+}
+
+#add_user_content .btn_search{
+    padding: 8px 74px 8px 74px;
+    text-align: center;
+    border-radius: 20px;
+    border:2px solid #00FFDE;
+    font-weight: 600;
+    cursor: pointer;
+    color: #0275D9;
+    transition: all .4s ease;
+}
+#add_user_content .btn_search:hover{
+    background: #00FFDE;
+    color: white;
+}
 
 
+#add_interes_content{
+    padding-top: 40px;
+}
+#add_interes_content input{
+    text-align: center;
+    border-radius: 20px;
+    border:2px solid #00FFDE;
+    padding: 8px 12px 8px 12px;
+    font-weight: 600;
+    color: #777c84;
+}
 
-
-
-
-
+#add_interes_content .btn_search{
+    padding: 8px 74px 8px 74px;
+    text-align: center;
+    border-radius: 20px;
+    border:2px solid #00FFDE;
+    font-weight: 600;
+    cursor: pointer;
+    color: #0275D9;
+    transition: all .4s ease;
+}
+#add_interes_content .btn_search:hover{
+    background: #00FFDE;
+    color: white;
+}
 
 
