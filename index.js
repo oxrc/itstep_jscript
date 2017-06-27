@@ -1,12 +1,10 @@
-var express = require('express')
-var app = express()
+var server = require('./server');
+var router = require('./router');
+var requestHandlers = require("./requestHandlers");
 
-// Vue.js pages will be routed here.
-app.get('/vue', function (req, res) {
-  res.send('Vue.js test page.')
-})
+var handle = {}
+handle["/"] = requestHandlers.start;
+handle["/start"] = requestHandlers.start;
+handle["/upload"] = requestHandlers.upload;
 
-// Making the app listen to port 80 for requests.
-app.listen(80, function () {
-  console.log('App is listening on the 80 port.')
-})
+server.start(router.route, handle);
