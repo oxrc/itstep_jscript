@@ -38,6 +38,6 @@ app.get('/vue/edit/:id', function(req, res){
 })
 
 // Making the app listen to port 80 for requests.
-app.listen(81, function() {
+app.listen(80, function() {
   console.log('App is listening on the 80 port.');
 })
