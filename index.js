@@ -13,16 +13,30 @@ app.set('vue', {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Main page
+// Init default variables
+var pageTitle='Main page';
+
+// Main page
 app.get('/vue', function(req, res) {
   res.render('main');
 });
 
-//Add user
-app.get('/vue/adduser', function(req, res) {
+// Add user
+app.get('/vue/user/add', function (req, res) {
+  // Setup the variables for 'Add user' page.
+  pageTitle = 'Add User';
   var scope = {
     data: {
-      title: 'Add user'
+      title: 'Add user',
+    },
+    vue: {
+      head: {
+        title: pageTitle,
+        meta: [
+          { property: 'og:title', content: pageTitle },
+          { name: 'twitter:title', content: pageTitle }
+        ],
+      }
     }
   }
   res.render('add_user', scope);
@@ -33,7 +47,7 @@ app.get('/vue/addinteres', function(req, res) {
   res.render('add_interes');
 });
 
-app.get('/vue/edit/:id', function(req, res){
+app.get('/vue/user/edit/:id', function(req, res){
   res.send(req.params);
 })
 
