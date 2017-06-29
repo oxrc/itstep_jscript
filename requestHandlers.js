@@ -1,7 +1,7 @@
 var exec = require("child_process").exec;
 var sqlite3 = require('sqlite3').verbose();
 var file = "./usersdb";
-console.log(file);
+
 var db = new sqlite3.Database(file);
 
 function start(response) {
@@ -14,6 +14,23 @@ function start(response) {
     response.end();
 }
 
+function interests(response) {
+    console.log("Request handler 'interests' was called.");
+    var interestsList = {};
+
+
+    db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
+        for (row in rows) {
+            console.log(rows[row].i_id);
+            interestsList[rows[row].i_id] = rows[row].i_name;
+        }
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(interestsList));
+        response.end();
+    });
+
+}
+
 function upload(response) {
     console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
@@ -22,4 +39,5 @@ function upload(response) {
 }
 
 exports.start = start;
+exports.interests = interests;
 exports.upload = upload;
