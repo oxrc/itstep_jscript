@@ -3,12 +3,9 @@ body{
     padding:0;
     margin:0;
 }
-.row{
-    width:100%;
-    padding:0;
-    margin:0;
-}
+
 .page-wrapper{
+    width:100%;
     height:100vh;
 }
 #tables_users{
@@ -16,37 +13,46 @@ body{
     font-style: italic;
 }
 
+#tables_users{
+    width: 912px;
+    display: inline-block;
+    float: right;
+}
 #tables_users table thead{color: #5e646d;}
 #tables_users table tbody{font-weight: 500;}
 #tables_users #btn_delete{
-  border: 2px solid #00FFDE;
+  border: 2px solid #3f4144;
   border-radius: 12px;
   background: none;
+  line-height: 20px;
   padding: 9px 32px 9px 32px;
   text-decoration: none;
-  font-size: 17px;    
-  font-weight: 600;    
+  font-size: 14px;    
+  font-weight: 600;  
+  color: #3f4144;  
   font-style: italic; 
   transition: all .4s ease;
 }
 #tables_users #btn_delete:hover{
-    background: #00FFDE;
-    color:white;
+    background: #3f4144;
+    color: white;
 }
 #tables_users #btn_edit{
-  border: 2px solid #00FFDE;
+  border: 2px solid #3f4144;
   border-radius: 12px;
   font-style: italic;    
-  font-size: 17px; 
+  line-height: 20px;
+  font-size: 14px; 
   font-weight: 600;    
   background: none;
   text-decoration: none;
+  color: #3f4144;
   padding: 9px 32px 9px 32px;
     transition: all .4s ease;
 }
 #tables_users #btn_edit:hover{
-    background: #00FFDE;
-    color:white;
+    background: #3f4144;
+    color: white;
 }
 
 
@@ -54,31 +60,36 @@ body{
 
 
 .search_user{
-        padding-left: 138px;
+        width: 541px;
         padding-top: 62px;
+        display: inline-block;
+        float:left;
 }
 
 .search_user input{
     text-align: center;
     border-radius: 20px;
-    border:2px solid #00FFDE;
+    border:2px solid #3f4144;
     padding: 8px 12px 8px 12px;
     font-weight: 600;
     color: #777c84;
+    font-size: 14px;
 }
 
 .search_user .btn_search{
     padding: 8px 83px 8px 83px;
     text-align: center;
     border-radius: 20px;
-    border:2px solid #00FFDE;
+    border:2px solid #3f4144;
     font-weight: 600;
     cursor: pointer;
-    color: #0275D9;
+    color: #3f4144;
+    line-height: 21px;
+    font-size: 14px;
     transition: all .4s ease;
 }
 .search_user .btn_search:hover{
-    background: #00FFDE;
+    background: #3f4144;
     color: white;
 }
 
@@ -99,8 +110,9 @@ body{
     border: 2px solid #3f4144;
     border-radius: 20px;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
+    line-height: 20px;
     color:#3f4144;
     transition: all .4s ease;
 }
@@ -123,7 +135,7 @@ body{
 #add_user_content input{
     text-align: center;
     border-radius: 20px;
-    border:2px solid #00FFDE;
+    border:2px solid #3f4144;
     padding: 8px 12px 8px 12px;
     font-weight: 600;
     color: #777c84;
@@ -151,7 +163,7 @@ body{
 #add_interes_content input{
     text-align: center;
     border-radius: 20px;
-    border:2px solid #00FFDE;
+    border:2px solid #3f4144;
     padding: 8px 12px 8px 12px;
     font-weight: 600;
     color: #777c84;
@@ -161,14 +173,15 @@ body{
     padding: 8px 74px 8px 74px;
     text-align: center;
     border-radius: 20px;
-    border:2px solid #00FFDE;
+    border:2px solid #3f4144;
     font-weight: 600;
     cursor: pointer;
-    color: #0275D9;
+    color:#3f4144;
+    line-height: 20px;
     transition: all .4s ease;
 }
 #add_interes_content .btn_search:hover{
-    background: #00FFDE;
+    background: #3f4144;
     color: white;
 }
 
