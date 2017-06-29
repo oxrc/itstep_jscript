@@ -13,54 +13,21 @@ body{
     font-style: italic;
 }
 
-#tables_users{
-    width: 912px;
+.tables_users{
     display: inline-block;
     float: right;
+    padding-top: 47px;
 }
 #tables_users table thead{color: #5e646d;}
 #tables_users table tbody{font-weight: 500;}
-#tables_users #btn_delete{
-  border: 2px solid #3f4144;
-  border-radius: 12px;
-  background: none;
-  line-height: 20px;
-  padding: 9px 32px 9px 32px;
-  text-decoration: none;
-  font-size: 14px;    
-  font-weight: 600;  
-  color: #3f4144;  
-  font-style: italic; 
-  transition: all .4s ease;
-}
-#tables_users #btn_delete:hover{
-    background: #3f4144;
-    color: white;
-}
-#tables_users #btn_edit{
-  border: 2px solid #3f4144;
-  border-radius: 12px;
-  font-style: italic;    
-  line-height: 20px;
-  font-size: 14px; 
-  font-weight: 600;    
-  background: none;
-  text-decoration: none;
-  color: #3f4144;
-  padding: 9px 32px 9px 32px;
-    transition: all .4s ease;
-}
-#tables_users #btn_edit:hover{
-    background: #3f4144;
-    color: white;
-}
+
 
 
 
 
 
 .search_user{
-        width: 541px;
+        width: 922px;
         padding-top: 62px;
         display: inline-block;
         float:left;
@@ -70,14 +37,15 @@ body{
     text-align: center;
     border-radius: 20px;
     border:2px solid #3f4144;
-    padding: 8px 12px 8px 12px;
+    padding: 3px 2px 3px 2px;
     font-weight: 600;
     color: #777c84;
     font-size: 14px;
+    margin-bottom: 7px;
 }
 
 .search_user .btn_search{
-    padding: 8px 83px 8px 83px;
+    padding: 6px 66px 6px 66px;
     text-align: center;
     border-radius: 20px;
     border:2px solid #3f4144;
@@ -85,7 +53,7 @@ body{
     cursor: pointer;
     color: #3f4144;
     line-height: 21px;
-    font-size: 14px;
+    font-size: 12px;
     transition: all .4s ease;
 }
 .search_user .btn_search:hover{
@@ -99,6 +67,8 @@ body{
         padding: 0;
         display: flex;
         margin-top: 26px;
+        width: 74%;
+        float: right;
 }
 .search_user ul li{
     list-style: none;
@@ -106,11 +76,11 @@ body{
 }
 
 .search_user ul li a{
-    padding: 8px 40px 8px 40px;
+    padding: 8px 19px 8px 19px;
     border: 2px solid #3f4144;
     border-radius: 20px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 20px;
     color:#3f4144;
