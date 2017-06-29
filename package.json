@@ -24,5 +24,8 @@
   "homepage": "https://github.com/oxrc/itstep_jscript#readme",
   "dependencies": {
     "express": "^4.15.3"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.1.3"
   }
 }
