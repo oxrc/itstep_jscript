@@ -12,7 +12,6 @@ app.set('vue', {
   defaultLayout: 'layout'
 });
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
 
 //Main page
 app.get('/vue', function(req, res) {
