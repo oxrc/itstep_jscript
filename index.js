@@ -47,9 +47,61 @@ app.get('/vue/addinteres', function(req, res) {
   res.render('add_interes');
 });
 
-app.get('/vue/user/edit/:id', function(req, res){
+app.get('/vue/user/edit/:id', function (req, res) {
   res.send(req.params);
-})
+});
+
+// Server mockups
+let user_list = {
+  users: [
+    {
+      id: 1,
+      name: "Valera",
+      age: 18,
+      phone: "+37379865764",
+      interests: [1, 5, 7, 8]
+    },
+    {
+      id: 2,
+      name: "Maria",
+      age: 20,
+      phone: "+37379003413",
+      interests: [2, 7, 8]
+    },
+    {
+      id: 3,
+      name: "Ionela",
+      age: 25,
+      phone: "+37369903436",
+      interests: [4, 5]
+    },
+    {
+      id: 4,
+      name: "Ionela",
+      age: 21,
+      phone: "+37369654688",
+      interests: [1, 2, 3]
+    },
+  ]
+}
+app.get('/api/user/list', function (req, res) {
+  res.json(user_list);
+});
+app.get('/api/user/:uid', function (req, res) {
+  var uid = req.params.uid;
+  let existing_user;
+  for (let user of user_list) {
+    console.log(user);
+    // if (req.params.uid == user.id) {
+    //   console.log(user);
+    //   existing_user = user;
+    // }
+  }
+  // if (undefined !== existing_user) {
+  //   existing_user = { error: 'User not found' };
+  // }
+  res.json(existing_user);
+});
 
 // Making the app listen to port 80 for requests.
 app.listen(80, function() {
