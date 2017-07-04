@@ -14,14 +14,32 @@ function start(response) {
     response.end();
 }
 
-function interests(response) {
-    console.log("Request handler 'interests' was called.");
-    var interestsList = {};
+function getUsers(response) {
+    var users = [];
+    var userData = {};
+    db.all("SELECT u.id, u.name, u.age, u.phone, i.int_id FROM users u INNER JOIN interests i ON u.id=i.uid", function(err, rows) {
+        for (row in rows) {
+            console.log(rows[row]);
+            // userData['id'] = rows[row].id;
+            // userData['name'] = rows[row].name;
+            // userData['age'] = rows[row].age;
+            // userData['phone'] = rows[row].phone;
+            // users.push(userData);
+        }
 
+        console.log(users);
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(users));
+        response.end();
+    });
+}
+
+function interests(response) {
+    var interestsList = {};
 
     db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
         for (row in rows) {
-            console.log(rows[row].i_id);
+            // console.log(rows[row].i_id);
             interestsList[rows[row].i_id] = rows[row].i_name;
         }
         response.writeHead(200, { "Content-Type": "application/json" });
@@ -41,3 +59,4 @@ function upload(response) {
 exports.start = start;
 exports.interests = interests;
 exports.upload = upload;
+exports.getUsers = getUsers;
