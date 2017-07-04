@@ -49,6 +49,18 @@ function interests(response) {
 
 }
 
+function add_interests(response, param) {
+    console.log("Function 'add_interests' was called.");
+        
+        var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
+        stmt.run();  
+        stmt.finalize();  
+        
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write("OK");
+        response.end();
+}
+
 function upload(response) {
     console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
