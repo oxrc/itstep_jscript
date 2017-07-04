@@ -6,11 +6,11 @@ import { Location }                 from '@angular/common';
 import { Hero }         from './hero';
 import { HeroService }  from './hero.service';
 @Component({
-  selector: 'hero-detail',
-  templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.css' ]
+  selector: 'user_edit',
+  templateUrl: './user_edit.component.html',
+  styleUrls: [ './user_edit.component.css' ]
 })
-export class HeroDetailComponent implements OnInit {
+export class User_editComponent implements OnInit {
   hero: Hero;
 
   constructor(
