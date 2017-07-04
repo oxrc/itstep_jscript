@@ -31,23 +31,16 @@ function interests(response) {
 
 }
 
-function add_interests(response) {
+function add_interests(response, param) {
     console.log("Function 'add_interests' was called.");
-
-        var stmt = db.prepare("INSERT INTO user VALUES (?,?)");
-        for (var i = 0; i < 10; i++) {  
-    
-        var d = new Date();  
-        var n = d.toLocaleTimeString();  
-        stmt.run(i, n);  
-        }  
+        
+        var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
+        stmt.run();  
         stmt.finalize();  
         
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write("OK");
         response.end();
-    
-
 }
 
 function upload(response) {
