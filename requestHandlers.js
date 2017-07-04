@@ -31,6 +31,25 @@ function interests(response) {
 
 }
 
+function add_interests(response) {
+    console.log("Function 'add_interests' was called.");
+
+        var stmt = db.prepare("INSERT INTO user VALUES (?,?)");
+        for (var i = 0; i < 10; i++) {  
+    
+        var d = new Date();  
+        var n = d.toLocaleTimeString();  
+        stmt.run(i, n);  
+        }  
+        stmt.finalize();  
+        
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write("OK");
+        response.end();
+    
+
+}
+
 function upload(response) {
     console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
