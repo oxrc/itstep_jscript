@@ -4,7 +4,8 @@ import { FormsModule }    from '@angular/forms';
 
 import { AppComponent }         from './app.component';
 import { Users_getComponent }   from './users_get.component';
-import { HeroDetailComponent }  from './hero-detail.component';
+import { User_editComponent }  from './user_edit.component';
+import { Interes_addComponent }  from './interes_add.component';
 import { HeroesComponent }      from './heroes.component';
 import { HeroService }          from './hero.service';
 
@@ -19,7 +20,8 @@ import { AppRoutingModule }     from './app-routing.module';
   declarations: [
     AppComponent,
     Users_getComponent,
-    HeroDetailComponent,
+    User_editComponent,
+	Interes_addComponent,
     HeroesComponent
   ],
   providers: [ HeroService ],
