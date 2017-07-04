@@ -52,7 +52,7 @@ app.get('/vue/user/edit/:id', function (req, res) {
 });
 
 // Server mockups
-let user_list = {
+var user_list = {
   users: [
     {
       id: 1,
@@ -88,18 +88,16 @@ app.get('/api/user/list', function (req, res) {
   res.json(user_list);
 });
 app.get('/api/user/:uid', function (req, res) {
-  var uid = req.params.uid;
+  let uid = parseInt(req.params.uid, 10);
   let existing_user;
-  for (let user of user_list) {
-    console.log(user);
-    // if (req.params.uid == user.id) {
-    //   console.log(user);
-    //   existing_user = user;
-    // }
+  for (let user of user_list.users) {
+    if (uid == user.id) {
+      existing_user = user;
+    }
   }
-  // if (undefined !== existing_user) {
-  //   existing_user = { error: 'User not found' };
-  // }
+  if (undefined === existing_user) {
+    existing_user = { error: 'User not found' };
+  }
   res.json(existing_user);
 });
 
