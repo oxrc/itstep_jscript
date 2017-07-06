@@ -1,6 +1,8 @@
 var exec = require("child_process").exec;
 var sqlite3 = require('sqlite3').verbose();
 var file = "./usersdb";
+var Querystring = require("querystring");
+var url = require('url');
 
 var db = new sqlite3.Database(file);
 
@@ -31,12 +33,13 @@ function interests(response) {
 
 }
 
-function add_interests(response, param) {
-    console.log("Function 'add_interests' was called.");
-        
-        var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
-        stmt.run();  
-        stmt.finalize();  
+function add_interests(response, request) {
+        var query = url.parse()
+        console.log("Function 'add_interests' was called.");
+        console.log();
+        // var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
+        // stmt.run();  
+        // stmt.finalize();  
         
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write("OK");
