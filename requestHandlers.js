@@ -16,15 +16,16 @@ function start(response) {
 
 function getUsers(response) {
     var users = [];
-    var userData = {};
-    db.all("SELECT u.id, u.name, u.age, u.phone, i.int_id FROM users u INNER JOIN interests i ON u.id=i.uid", function(err, rows) {
+
+    db.all("SELECT u.id, u.name, u.age, u.phone, GROUP_CONCAT(i.int_id, ',') AS interests FROM users u, interests i WHERE u.id = i.uid GROUP BY u.id", function(err, rows) {
         for (row in rows) {
-            console.log(rows[row]);
-            // userData['id'] = rows[row].id;
-            // userData['name'] = rows[row].name;
-            // userData['age'] = rows[row].age;
-            // userData['phone'] = rows[row].phone;
-            // users.push(userData);
+            userData = {};
+            userData['id'] = rows[row].id;
+            userData['name'] = rows[row].name;
+            userData['age'] = rows[row].age;
+            userData['phone'] = rows[row].phone;
+            userData['interests'] = rows[row].interests;
+            users.push(userData);
         }
 
         console.log(users);
@@ -32,6 +33,13 @@ function getUsers(response) {
         response.write(JSON.stringify(users));
         response.end();
     });
+}
+
+function get_interests(response, users) {
+
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.write(JSON.stringify(users));
+    response.end();
 }
 
 function interests(response) {
@@ -49,17 +57,17 @@ function interests(response) {
 
 }
 
-function add_interests(response, param) {
-    console.log("Function 'add_interests' was called.");
-        
-        var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
-        stmt.run();  
-        stmt.finalize();  
-        
-        response.writeHead(200, { "Content-Type": "application/json" });
-        response.write("OK");
-        response.end();
-}
+// function add_interests(response, param) {
+//     console.log("Function 'add_interests' was called.");
+
+//     var stmt = db.prepare("INSERT INTO interests VALUES (NULL," + param + ")");
+//     stmt.run();
+//     stmt.finalize();
+
+//     response.writeHead(200, { "Content-Type": "application/json" });
+//     response.write("OK");
+//     response.end();
+// }
 
 function upload(response) {
     console.log("Request handler 'upload' was called.");

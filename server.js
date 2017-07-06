@@ -7,11 +7,8 @@ function start(route, handle) {
 
         console.log("Request received." + pathname);
 
-        var param = querystring(string)["interest"];
-
-
         console.log("Request received.");
-        route(handle, pathname, response, param);
+        route(handle, pathname, response);
     }
     http.createServer(onRequest).listen(8888);
     console.log("Server has started.");
