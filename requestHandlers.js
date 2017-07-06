@@ -1,6 +1,8 @@
 var exec = require("child_process").exec;
 var sqlite3 = require('sqlite3').verbose();
 var file = "./usersdb";
+var url = require('url');
+var queryString = require('querystring');
 
 var db = new sqlite3.Database(file);
 
@@ -35,13 +37,6 @@ function getUsers(response) {
     });
 }
 
-function get_interests(response, users) {
-
-    response.writeHead(200, { "Content-Type": "application/json" });
-    response.write(JSON.stringify(users));
-    response.end();
-}
-
 function interests(response) {
     var interestsList = {};
 
@@ -57,19 +52,9 @@ function interests(response) {
 
 }
 
-// function add_interests(response, param) {
-//     console.log("Function 'add_interests' was called.");
-
-//     var stmt = db.prepare("INSERT INTO interests VALUES (NULL," + param + ")");
-//     stmt.run();
-//     stmt.finalize();
-
-//     response.writeHead(200, { "Content-Type": "application/json" });
-//     response.write("OK");
-//     response.end();
-// }
-
-function upload(response) {
+function addInterests(response, request) {
+    var query = url.parse(request.url).query;
+    console.log(query);
     console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Hello Upload");
@@ -78,5 +63,6 @@ function upload(response) {
 
 exports.start = start;
 exports.interests = interests;
-exports.upload = upload;
+
 exports.getUsers = getUsers;
+exports.addInterests = addInterests;

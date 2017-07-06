@@ -8,10 +8,6 @@ handle["/"] = requestHandlers.start;
 
 handle["/api/interests"] = requestHandlers.interests;
 handle["/api/users"] = requestHandlers.getUsers;
-handle["/api/interests?q=(nameofinteresttoinsert)"] = requestHandlers.addInterests;
-
-handle["/api/interests/interest=*"] = requestHandlers.add_interests;
-
-handle["/upload"] = requestHandlers.upload;
+handle["/api/add/interests"] = requestHandlers.addInterests;
 
 server.start(router.route, handle);
