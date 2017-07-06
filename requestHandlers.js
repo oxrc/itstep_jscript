@@ -16,10 +16,18 @@ function start(response) {
     response.end();
 }
 
-function getUsers(response) {
+function getUsers(response, request) {
     var users = [];
-
-    db.all("SELECT u.id, u.name, u.age, u.phone, GROUP_CONCAT(i.int_id, ',') AS interests FROM users u, interests i WHERE u.id = i.uid GROUP BY u.id", function(err, rows) {
+    var query = url.parse(request.url).query;
+    var object = queryString.parse(query);
+    var offset;
+    if (object['page'] == null || object['page'] == 1) {
+        offset = 0;
+    } else {
+        offset = object['page'];
+    }
+    var dbQuery = "SELECT u.id, u.name, u.age, u.phone, GROUP_CONCAT(i.int_id, ',') AS interests FROM users u, interests i WHERE u.id = i.uid GROUP BY u.id LIMIT 5 OFFSET " + offset;
+    db.all(dbQuery, function(err, rows) {
         for (row in rows) {
             userData = {};
             userData['id'] = rows[row].id;
@@ -30,7 +38,6 @@ function getUsers(response) {
             users.push(userData);
         }
 
-        console.log(users);
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(users));
         response.end();
