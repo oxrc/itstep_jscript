@@ -51,20 +51,6 @@ function interests(response) {
     });
 
 }
-
-function add_interests(response, request) {
-        var query = url.parse()
-        console.log("Function 'add_interests' was called.");
-        console.log();
-        // var stmt = db.prepare("INSERT INTO interests VALUES (NULL,"+param+")");
-        // stmt.run();  
-        // stmt.finalize();  
-        
-        response.writeHead(200, { "Content-Type": "application/json" });
-        response.write("OK");
-        response.end();
-}
-
 function upload(response) {
     console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
@@ -74,8 +60,16 @@ function upload(response) {
 
 function addInterests(response, request) {
     var query = url.parse(request.url).query;
-    console.log(query);
+    var queryObject = queryString.parse(query);
+   
+    var dbQuery = "INSERT INTO interests_list (i_name) VALUES (" + "'" + queryObject['interest'] + "'" + ")";
+     console.log(dbQuery);
+    var stmt = db.prepare(dbQuery);
+    console.log();
+    stmt.run();  
+    stmt.finalize();  
     console.log("Request handler 'addInterest' was called.");
+    
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Add interest");
     response.end();
@@ -83,6 +77,5 @@ function addInterests(response, request) {
 
 exports.start = start;
 exports.interests = interests;
-
 exports.getUsers = getUsers;
 exports.addInterests = addInterests;

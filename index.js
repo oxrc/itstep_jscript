@@ -7,7 +7,6 @@ var app = express;
 
 var handle = {}
 handle["/"] = requestHandlers.start;
-handle["/api/add/interests"] = requestHandlers.add_interests;
 handle["/upload"] = requestHandlers.upload;
 handle["/api/interests"] = requestHandlers.interests;
 handle["/api/users"] = requestHandlers.getUsers;
