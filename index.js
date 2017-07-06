@@ -105,3 +105,14 @@ app.get('/api/user/:uid', function (req, res) {
 app.listen(80, function() {
   console.log('App is listening on the 80 port.');
 })
+
+// var server = require('./server');
+// var router = require('./router');
+// var requestHandlers = require("./requestHandlers");
+
+// var handle = {}
+// handle["/"] = requestHandlers.start;
+// handle["/api/interests"] = requestHandlers.interests;
+// handle["/upload"] = requestHandlers.upload;
+
+// server.start(router.route, handle);
