@@ -14,21 +14,17 @@ function start(response) {
     response.end();
 }
 
+// Get the list of all interests.
 function interests(response) {
     console.log("Request handler 'interests' was called.");
     var interestsList = {};
 
-
     db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
         for (row in rows) {
-            console.log(rows[row].i_id);
             interestsList[rows[row].i_id] = rows[row].i_name;
         }
-        response.writeHead(200, { "Content-Type": "application/json" });
-        response.write(JSON.stringify(interestsList));
-        response.end();
+        response.json(interestsList);
     });
-
 }
 
 function upload(response) {

@@ -1,7 +1,11 @@
+// Expressjs initalization.
 const path = require('path');
 const express = require('express')
 const expressVue = require('express-vue');
 const app = express();
+
+// DB server endpoints initialization.
+var serverHandlers = require("./requestHandlers");
 
 // Init vue app.
 app.engine('vue', expressVue);
@@ -101,18 +105,12 @@ app.get('/api/user/:uid', function (req, res) {
   res.json(existing_user);
 });
 
+// Server endpoints.
+app.get('/api/interests', function (req, res) {
+  serverHandlers.interests(res);
+});
+
 // Making the app listen to port 80 for requests.
 app.listen(80, function() {
   console.log('App is listening on the 80 port.');
-})
-
-// var server = require('./server');
-// var router = require('./router');
-// var requestHandlers = require("./requestHandlers");
-
-// var handle = {}
-// handle["/"] = requestHandlers.start;
-// handle["/api/interests"] = requestHandlers.interests;
-// handle["/upload"] = requestHandlers.upload;
-
-// server.start(router.route, handle);
+});
