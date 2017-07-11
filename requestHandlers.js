@@ -63,7 +63,7 @@ function addInterests(response, request) {
     var queryObject = queryString.parse(query);
    
     var dbQuery = "INSERT INTO interests_list (i_name) VALUES (" + "'" + queryObject['interest'] + "'" + ")";
-     console.log(dbQuery);
+    console.log(dbQuery);
     var stmt = db.prepare(dbQuery);
     console.log();
     stmt.run();  
@@ -71,11 +71,64 @@ function addInterests(response, request) {
     console.log("Request handler 'addInterest' was called.");
     
     response.writeHead(200, { "Content-Type": "text/plain" });
-    response.write("Add interest");
+    response.write("Add interes");
     response.end();
 }
+
+function addUser(response, request) {
+    var query = url.parse(request.url).query;
+    var queryObject = queryString.parse(query);
+    var dbQuery = "INSERT INTO users (name,age,phone) VALUES";
+    // var name = queryObject.name;
+    // var age = queryObject.age;
+    // var phone = queryObject.phone;
+    // var interests = queryObject.interests;
+    //console.log(name,age,phone,interests);
+    if(queryObject.name != undefined && name != ""){
+        var name = queryObject.name;
+        dbQuery += "("+ "'" + name + "',"; 
+    }
+    else{
+
+    }
+    if (queryObject.age != undefined && age != "") {
+        var age = queryObject.age;
+        dbQuery += age + ",";  
+    }
+    else if(queryObject.age == undefined || age == ""){
+         var age = 0;
+         dbQuery += age + ",";
+    }
+    if (queryObject.phone != undefined && phone != "") {
+        var phone = queryObject.phone;
+        dbQuery += phone; 
+    }
+    else if(queryObject.phone == undefined || phone == ""){
+         var phone = 0;
+         dbQuery += phone + ",";
+    }
+    dbQuery += ")";
+    console.log(dbQuery);
+    
+
+
+
+
+    //  console.log(dbQuery);
+    // var stmt = db.prepare(dbQuery);
+    // console.log();
+    // stmt.run();  
+    // stmt.finalize();  
+    // console.log("Request handler 'addInterest' was called.");
+    
+    response.writeHead(200, { "Content-Type": "text/plain" });
+    response.write("Add user");
+    response.end();
+}
+
 
 exports.start = start;
 exports.interests = interests;
 exports.getUsers = getUsers;
 exports.addInterests = addInterests;
+exports.addUser = addUser;
