@@ -35,12 +35,18 @@
         </table>
       
     </div>
-
-
-    <div id="output">
-        <ul></ul>
-    </div>
+    
+   
 
    </div> 
 </div>
 </template>
+
+<script>
+  export default {
+      data: function () {
+          return {}
+      }
+  }
+</script>
+<style></style>
