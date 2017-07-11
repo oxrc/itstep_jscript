@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Http, Response, HttpModule } from '@angular/http';
+import 'rxjs/Rx';
 
 
 @Component({
@@ -13,20 +15,17 @@ export class User_addComponent implements OnInit {
 			echo "<option value='{$interests[$key]['id']}'>{$interests[$key]['interes']}</option>";
 	?>*/
 
-    items = [{
-        id: '5',
-        Year: '2010'
-    }, {
-        id: '6',
-        Year: '2010'
-    }, {
-        id: '7',
-        Year: '2013'
-    }];
-    
-    selected = {
-        id: '5'
-    };
+//	public interests;
+//    constructor(http: Http) {
+//        http.get('http://127.0.0.1/api/get_interests').map((res: Response) => res.json())
+//		.subscribe(res => this.interests = res.interests);
+//    }	
+	
+    public interests = [
+		{ interes: 'Jilles', id: 21 },
+		{ interes: 'Todd', id: 24 },
+		{ interes: 'Lisa', id: 18 }
+    ];
   ngOnInit(): void {
   }
 }
