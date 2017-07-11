@@ -12,18 +12,19 @@
 			<span>
 				Age: <input id="age" type="number" min="6" max="666" name="age" /><br />
 			</span>
+			<br/>
 			<span>
 				Interests:<br />
 				<select id="interes_list" name="interests" multiple="multiple">
 					<option value="{{item.id}}" ng-repeat="item in items">{{item.Year}}</option>
 				</select>
 			</span> <br />
-			<a class="button" href="/user/add_interes">Add interes</a><br>
+			<a class="a" href="interes_add">Add interes</a><br>
 			<span style="display:none">
 				<input id="new_interes" type="text" name="new_interes" /> <input onclick="add_interes();" id="add_interes_btn" type="submit" value="Add interes!" /><br />
 			</span>
 			<span>
-				<input onclick="add_user();" type="submit" value="Send!" />
+				<input class="a" onclick="add_user();" type="submit" value="Send!" />
 			</span> <br />
 			<span class="alert"></span>
 		</div>
