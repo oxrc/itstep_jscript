@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { Router } from '@angular/router';
+import { Http, Response, HttpModule } from '@angular/http';
+import {Injectable} from '@angular/core';
 
 @Component({
   selector: 'my-users_get',
@@ -10,12 +10,14 @@ import { HeroService } from './hero.service';
 })
 export class Users_getComponent implements OnInit {
 
-  heroes: Hero[] = [];
+  	public users;
+    constructor(http: Http) {
+        http.get('http://127.0.0.1/api/get_user/5/0').map((res: Response) => res.json())
+		.subscribe(res => this.users = res.users);
+    }	
 
-  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
-    this.heroService.getHeroes()
-      .then(heroes => this.heroes = heroes.slice(1, 5));
+    
   }
 }
