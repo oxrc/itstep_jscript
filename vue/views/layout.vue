@@ -6,11 +6,13 @@
         <link rel="stylesheet" type="text/css" href="/css/skeleton.css" >
         <link rel="stylesheet" type="text/css" href="/css/style.css" >
         <script src="/js/vue.js"></script>
-        <script src="/js/axios.js"></script>
+        <script src="/js/jquery.js"></script>
     </head>
-    <body>
+    <body id="body">
         {{{app}}}
         {{{script}}}
+        
+        <script src="/js/ajax.js"></script>
     </body>
 </html>
 </template>

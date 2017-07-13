@@ -21,8 +21,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
                     <th>Age</th>
                     <th>Telephone</th>
                     <th>Interest</th>
@@ -31,46 +30,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Joke</td>
-                    <td>23</td>
-                    <td>757834965</td>
-                    <td>Sport</td>
-                    <td><a href="#" class="button"  id="btn_delete"><span class="fa fa-trash"></span> Удалить</a></td>
-                    <td><a href="#" class="button" id="btn_edit"><span class="fa fa-pencil"></span> Редактировать</a></td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Joke</td>
-                    <td>23</td>
-                    <td>757834965</td>
-                    <td>Sport</td>
-                    <td><a href="#" class="button" id="btn_delete"><span class="fa fa-trash"></span> Удалить</a></td>
-                    <td><a href="#" class="button" id="btn_edit"><span class="fa fa-pencil"></span> Редактировать</a></td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Joke</td>
-                    <td>23</td>
-                    <td>757834965</td>
-                    <td>Sport</td>
-                    <td><a href="#" class="button" id="btn_delete"><span class="fa fa-trash"></span> Удалить</a></td>
-                    <td><a href="#" class="button" id="btn_edit"><span class="fa fa-pencil"></span> Редактировать</a></td>
-                </tr>
+                
             </tbody>
         </table>
       
     </div>
-
-
-    <div id="output">
-      
-    </div>
+    
+   
 
    </div> 
 </div>
 </template>
+
+<script>
+  export default {
+      data: function () {
+          return {}
+      }
+  }
+</script>
+<style></style>
