@@ -1,10 +1,28 @@
 <h1>Здрассте</h1>
-  <a *ngFor="let user of users"  [routerLink]="['/user_edit', user.id]">
-    <div>
-     {{user.nick}}
-	 {{user.id}}
-	 {{user.phone}}
-	 {{user.age}}
-	 <!--<span *ngFor="let interes of user.interests"class="col-1-4">{{interes}}</span>-->
-    </div>
-  </a>
+
+<div id="content_right" class="">
+	<div class="clear" id="users"><br><br><br><br>
+		<table>
+			<tbody>
+			<tr>
+				<th>Id:</th>
+				<th>Nick:</th>
+				<th>Age:</th>
+				<th>Phone:</th>
+				<th>Actions:</th>
+			</tr>
+
+
+			<tr *ngFor="let user of users" class="five_cells" id="user_ul_{{user.id}}">
+				<td>{{user.id}}</td>
+				<td>{{user.nick}}</td>
+				<td>{{user.age}}</td>
+				<td>{{user.phone}}</td>
+				<td><a (click)="dropUser(user.id)">delete</a>&nbsp;<a rel="nofollow noopener noreferer" target="_blank" [routerLink]="['/user_edit', user.id]">update</a></td>
+			</tr>
+			<!--<span *ngFor="let interes of user.interests"class="col-1-4">{{interes}}</span>-->
+		</tbody>
+		</table>
+	</div>	 
+</div>
+

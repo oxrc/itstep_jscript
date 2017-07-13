@@ -16,8 +16,10 @@ export class Users_getComponent implements OnInit {
 		.subscribe(res => this.users = res.users);
     }	
 
+	public dropUser(id) {
+		alert('Drop ' + id);
+	}
 
   ngOnInit(): void {
-    
   }
 }
