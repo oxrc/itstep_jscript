@@ -110,7 +110,6 @@ app.get('/api/interests', function (req, res) {
   serverHandlers.interests(res);
 });
 
-
 app.get('/api/users', function(req, res){
   serverHandlers.getUsers(res, req);
 });
@@ -118,7 +117,6 @@ app.get('/api/users', function(req, res){
 app.get('/api/interests/add', function(req, res){
   serverHandlers.getUsers(res, req);
 });
-
 
 // Making the app listen to port 80 for requests.
 app.listen(80, function() {

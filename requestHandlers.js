@@ -16,7 +16,6 @@ function start(response) {
     response.end();
 }
 
-
 // Get the list of all users.
 function getUsers(response, request) {
     var users = [];
@@ -46,7 +45,6 @@ function getUsers(response, request) {
     });
 }
 
-
 // Get the list of all interests.
 function interests(response) {
     console.log("Request handler 'interests' was called.");
@@ -59,7 +57,6 @@ function interests(response) {
         response.json(interestsList);
     });
 }
-
 
 //Add interes.
 function addInterests(response, request) {
@@ -78,7 +75,6 @@ function addInterests(response, request) {
     response.write("Add interest");
     response.end();
 }
-
 
 function upload(response) {
     console.log("Request handler 'upload' was called.");
