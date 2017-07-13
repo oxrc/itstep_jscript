@@ -37,7 +37,6 @@ function getUsers(response, request) {
             userData['interests'] = rows[row].interests;
             users.push(userData);
         }
-
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(users));
         response.end();
@@ -49,7 +48,6 @@ function interests(response) {
 
     db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
         for (row in rows) {
-            // console.log(rows[row].i_id);
             interestsList[rows[row].i_id] = rows[row].i_name;
         }
         response.writeHead(200, { "Content-Type": "application/json" });
@@ -61,8 +59,6 @@ function interests(response) {
 
 function addInterests(response, request) {
     var query = url.parse(request.url).query;
-    console.log(query);
-    console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Hello Upload");
     response.end();
@@ -102,9 +98,7 @@ function getUsersByParameters(response, request) {
         for (row in rows) {
             ids.push(rows[row].id);
         }
-        console.log(ids);
         getUsersById(response, ids);
-        console.log('Finish');
     });
 
 }
@@ -112,7 +106,6 @@ function getUsersByParameters(response, request) {
 function getUsersById(response, ids) {
     var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
         " FROM users u, interests i WHERE u.id = i.uid AND u.id IN (" + ids + ") GROUP BY u.id";
-    console.log(query);
     var users = [];
     db.all(query, function(err, rows) {
         for (row in rows) {
@@ -124,14 +117,29 @@ function getUsersById(response, ids) {
             userData['interests'] = rows[row].interests;
             users.push(userData);
         }
-        console.log(users);
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(users));
         response.end();
-        console.log('data sent');
     });
 }
+
+function getUsersById(response, request) {
+
+    var query = url.parse(request.url).query;
+    var object = queryString.parse(query);
+
+    var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+        " FROM users u, interests i WHERE u.id = i.uid AND u.id = " + object.id;
+    db.get(query, function(err, row) {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(row));
+        response.end();
+    });
+}
+
+
 exports.start = start;
+exports.getUsersById = getUsersById;
 exports.interests = interests;
 exports.getUsersCount = getUsersCount;
 exports.getUsers = getUsers;
