@@ -1,8 +1,10 @@
 <h1>Здрассте</h1>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes"  [routerLink]="['/detail', hero.id]"  class="col-1-4">
-    <div class="module hero">
-     
+  <a *ngFor="let user of users"  [routerLink]="['/user_edit', user.id]">
+    <div>
+     {{user.nick}}
+	 {{user.id}}
+	 {{user.phone}}
+	 {{user.age}}
+	 <!--<span *ngFor="let interes of user.interests"class="col-1-4">{{interes}}</span>-->
     </div>
   </a>
-</div>
