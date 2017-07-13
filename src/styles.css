@@ -63,3 +63,29 @@ nav a.active {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+ .a {
+  padding: 4px 10px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #eee;
+	border: 0;
+	border-radius: 5%;
+    cursor: pointer; 
+
+}
+.a:visited, .a:link {
+  color: #607D8B;
+  outline:none;
+
+}
+.a:hover {
+  color: #039be5;
+  background-color: #CFD8DC;
+
+}
+ .a.active {
+  color: #039be5;
+
+}

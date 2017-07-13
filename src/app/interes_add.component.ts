@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: [ './interes_add.component.css' ]
 })
 export class Interes_addComponent implements OnInit {
-  area_title:string="Добавление интересов:";
+  area_title:string="Add Interests:";
   interes:string="";
   myColor:string="black";
-  input_color_string:string="Покрасить в:";
-  input_interes_string:string="Твой интерес:";
-  button_add_interes_text:string="Добавить!";
+  input_color_string:string="Repaint text:";
+  input_interes_string:string="Your Interest:";
+  button_add_interes_text:string="Add!";
   ngOnInit(): void {
 	
   }
