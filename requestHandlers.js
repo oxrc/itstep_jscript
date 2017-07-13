@@ -42,6 +42,8 @@ function getUsers(response, request) {
 
     response.json(users);
   });
+
+  response.json({status: "error", message: "Something went wrong."});
 }
 
 // Get the list of all interests.
@@ -55,6 +57,8 @@ function interests(response) {
     }
     response.json(interestsList);
   });
+
+  response.json({status: "error", message: "Something went wrong."});
 }
 
 //Add interes.
@@ -68,16 +72,13 @@ function addInterests(response, request) {
   stmt.finalize();
   console.log("Request handler 'addInterest' was called.");
 
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.write("Add interest");
-  response.end();
+  response.json({ status: "success", message: "Inerest was added." });
 }
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
-  response.writeHead(200, { "Content-Type": "text/plain" });
-  response.write("Hello Upload");
-  response.end();
+
+  response.json({ status: "success", message: "Upload completed." });
 }
 
 exports.start = start;
