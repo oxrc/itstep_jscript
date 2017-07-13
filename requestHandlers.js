@@ -68,8 +68,44 @@ function addInterests(response, request) {
     response.end();
 }
 
+function getUsersCount(response, request) {
+    db.get("SELECT count(id) as count FROM users", function(err, row) {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(row));
+        response.end();
+    });
+}
+
+function getUsersByParameters(response, request) {
+    var query = url.parse(request.url).query;
+    var object = queryString.parse(query);
+
+    console.log(object);
+    query_interests = "u.id = i.uid AND i.int_id = il.i_id";
+    query = "SELECT u.id, u.name, u.age, u. phone, il.i_name FROM users u, interests_list il, interests i WHERE " + query_interests;
+
+    if (object.name !== 'undefined' && object.name !== '') {
+        query += ' AND u.name LIKE "%' + object.name + '%"';
+    }
+    if (object.age !== 'undefined' && object.age !== '') {
+        query += " AND u.age =" + object.age;
+    }
+    if (object.phone !== 'undefined' && object.phone !== '') {
+        query += " AND u.phone =" + object.phone;
+    }
+    if (object.interests != 'undefined' && object.interests != '') {
+        var arrayInterests = (object.interests).split(',');
+        for (var i = 0; i < arrayInterests.length; i++) {
+            query += " AND i.int_id =" + arrayInterests[i];
+        }
+        console.log(query);
+    }
+
+}
+
 exports.start = start;
 exports.interests = interests;
-
+exports.getUsersCount = getUsersCount;
 exports.getUsers = getUsers;
 exports.addInterests = addInterests;
+exports.getUsersByParameters = getUsersByParameters;
