@@ -15,7 +15,7 @@
 			<span>
 				Interests:<br />
 				<select id="interes_list" name="interests" multiple="multiple">
-					<option value="{{item.id}}" ng-repeat="item in items">{{item.Year}}</option>
+					<option *ngFor="let interes of interests" value="{{interes.id}}">{{interes.interes}}</option>
 				</select>
 			</span> <br />
 			<a class="button" href="/user/add_interes">Add interes</a><br>
