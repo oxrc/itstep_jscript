@@ -53,6 +53,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   cursor: hand;
+  outline:none;
 }
 button:hover {
   background-color: #cfd8dc;

@@ -1,10 +1,11 @@
+<body background="1.jpg">
 <div class="border_half_page" >
 	<div id="content_left" class="text_center">
 	<span>
-		<span style="display: block; margin-top:15%;">{{area_title}}</span><br />
+		<span style="display: block; margin-top:2%;"><h1>{{area_title}}</h1></span><br />
 		<span>{{input_interes_string}} <span [ngStyle]="{'color': myColor}">{{interes}}</span></span><br>
 		<input [(ngModel)]="interes" id="new_interes" type="text" name="new_interes" />
-		<input style="" onclick="add_interes();" id="add_interes_btn" type="submit" value="{{button_add_interes_text}}" /><br />
+		<input class="a" onclick="add_interes();" id="add_interes_btn" type="submit" value="{{button_add_interes_text}}" /><br />
 		<br /><br /><br />
 		{{input_color_string}}<br>
 		<input [(ngModel)]="myColor" value="{{myColor}}" type="text"/><br />
@@ -12,3 +13,4 @@
 
 	</div>
 </div>
+</body>
