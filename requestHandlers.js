@@ -65,7 +65,6 @@ function addInterests(response, request) {
     var dbQuery = "INSERT INTO interests_list (i_name) VALUES (" + "'" + queryObject['interest'] + "'" + ")";
     console.log(dbQuery);
     var stmt = db.prepare(dbQuery);
-    console.log();
     stmt.run();  
     stmt.finalize();  
     console.log("Request handler 'addInterest' was called.");
@@ -79,17 +78,14 @@ function addUser(response, request) {
     var query = url.parse(request.url).query;
     var queryObject = queryString.parse(query);
     var dbQuery = "INSERT INTO users (name,age,phone) VALUES";
-    // var name = queryObject.name;
-    // var age = queryObject.age;
-    // var phone = queryObject.phone;
-    // var interests = queryObject.interests;
-    //console.log(name,age,phone,interests);
+    var dbQueryLastID = "SELECT MAX(id) as id FROM users";
+    
     if(queryObject.name != undefined && name != ""){
         var name = queryObject.name;
-        dbQuery += "("+ "'" + name + "',"; 
+        dbQuery += "(" + "'" + name + "',"; 
     }
     else{
-
+        
     }
     if (queryObject.age != undefined && age != "") {
         var age = queryObject.age;
@@ -108,19 +104,36 @@ function addUser(response, request) {
          dbQuery += phone + ",";
     }
     dbQuery += ")";
-    console.log(dbQuery);
+    // console.log(dbQuery); 
+    
+    var stmt = db.prepare(dbQuery);
+    stmt.run();  
+    stmt.finalize();
+
+        var interests_arr =  queryObject.interests.split(",").map(function(element){
+        return parseInt(element,10);
+     });
+    
+    db.get(dbQueryLastID, function(err,row){
+        id = row.id;
+        console.log(interests_arr);
+        var kol = interests_arr.length;
+        var interest;
+        var dbQueryInterests = "Insert into interests (uid, int_id) values (" + id + ", ";
+
+        for(var i = 0; i < kol; i++){
+        var stmt = db.prepare("Insert into interests (uid, int_id) values (" + id, interests_arr[i] + ")");
+        console.log( interests_arr[i]);
+    }
+    });  
+    
+    
     
 
 
 
-
-    //  console.log(dbQuery);
-    // var stmt = db.prepare(dbQuery);
-    // console.log();
-    // stmt.run();  
-    // stmt.finalize();  
-    // console.log("Request handler 'addInterest' was called.");
-    
+   
+    console.log("Request handler 'addInterest' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Add user");
     response.end();
