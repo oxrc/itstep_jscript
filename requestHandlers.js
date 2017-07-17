@@ -37,7 +37,6 @@ function getUsers(response, request) {
             userData['interests'] = rows[row].interests;
             users.push(userData);
         }
-
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(users));
         response.end();
@@ -49,7 +48,6 @@ function interests(response) {
 
     db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
         for (row in rows) {
-            // console.log(rows[row].i_id);
             interestsList[rows[row].i_id] = rows[row].i_name;
         }
         response.writeHead(200, { "Content-Type": "application/json" });
@@ -61,8 +59,6 @@ function interests(response) {
 
 function addInterests(response, request) {
     var query = url.parse(request.url).query;
-    console.log(query);
-    console.log("Request handler 'upload' was called.");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Hello Upload");
     response.end();
@@ -79,31 +75,71 @@ function getUsersCount(response, request) {
 function getUsersByParameters(response, request) {
     var query = url.parse(request.url).query;
     var object = queryString.parse(query);
-
-    console.log(object);
     query_interests = "u.id = i.uid AND i.int_id = il.i_id";
-    query = "SELECT u.id, u.name, u.age, u. phone, il.i_name FROM users u, interests_list il, interests i WHERE " + query_interests;
+    query = "SELECT DISTINCT u.id FROM users u, interests_list il, interests i WHERE " + query_interests;
 
-    if (object.name !== 'undefined' && object.name !== '') {
+    if (typeof object.name !== 'undefined' && object.name !== '') {
         query += ' AND u.name LIKE "%' + object.name + '%"';
     }
-    if (object.age !== 'undefined' && object.age !== '') {
+    if (typeof object.age !== 'undefined' && object.age !== '') {
         query += " AND u.age =" + object.age;
     }
-    if (object.phone !== 'undefined' && object.phone !== '') {
+    if (typeof object.phone !== 'undefined' && object.phone !== '') {
         query += " AND u.phone =" + object.phone;
     }
-    if (object.interests != 'undefined' && object.interests != '') {
+    if (typeof object.interests !== 'undefined' && object.interests !== '') {
+
         var arrayInterests = (object.interests).split(',');
-        for (var i = 0; i < arrayInterests.length; i++) {
-            query += " AND i.int_id =" + arrayInterests[i];
-        }
-        console.log(query);
+
+        query += " AND i.int_id IN (" + arrayInterests + ")";
     }
+    db.all(query, function(err, rows) {
+        var ids = [];
+        for (row in rows) {
+            ids.push(rows[row].id);
+        }
+        getUsersById(response, ids);
+    });
 
 }
 
+function getUsersById(response, ids) {
+    var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+        " FROM users u, interests i WHERE u.id = i.uid AND u.id IN (" + ids + ") GROUP BY u.id";
+    var users = [];
+    db.all(query, function(err, rows) {
+        for (row in rows) {
+            var userData = {};
+            userData['id'] = rows[row].id;
+            userData['name'] = rows[row].name;
+            userData['age'] = rows[row].age;
+            userData['phone'] = rows[row].phone;
+            userData['interests'] = rows[row].interests;
+            users.push(userData);
+        }
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(users));
+        response.end();
+    });
+}
+
+function getUsersById(response, request) {
+
+    var query = url.parse(request.url).query;
+    var object = queryString.parse(query);
+
+    var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+        " FROM users u, interests i WHERE u.id = i.uid AND u.id = " + object.id;
+    db.get(query, function(err, row) {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(row));
+        response.end();
+    });
+}
+
+
 exports.start = start;
+exports.getUsersById = getUsersById;
 exports.interests = interests;
 exports.getUsersCount = getUsersCount;
 exports.getUsers = getUsers;
