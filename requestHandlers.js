@@ -62,7 +62,7 @@ function addInterests(response, request) {
     var query = url.parse(request.url).query;
     var queryObject = queryString.parse(query);
    
-    var dbQuery = "INSERT INTO interests_list (i_name) VALUES (" + "'" + queryObject['interest'] + "'" + ")";
+    var dbQuery = "INSERT INTO interests_list (i_name) VALUES ('" + queryObject['interest'] + "')";
     console.log(dbQuery);
     var stmt = db.prepare(dbQuery);
     stmt.run();  
@@ -104,7 +104,6 @@ function addUser(response, request) {
          dbQuery += phone + ",";
     }
     dbQuery += ")";
-    // console.log(dbQuery); 
     
     var stmt = db.prepare(dbQuery);
     stmt.run();  
@@ -116,28 +115,44 @@ function addUser(response, request) {
     
     db.get(dbQueryLastID, function(err,row){
         id = row.id;
-        console.log(interests_arr);
         var kol = interests_arr.length;
         var interest;
-        var dbQueryInterests = "Insert into interests (uid, int_id) values (" + id + ", ";
-
-        for(var i = 0; i < kol; i++){
-        var stmt = db.prepare("Insert into interests (uid, int_id) values (" + id, interests_arr[i] + ")");
-        console.log( interests_arr[i]);
-    }
+        
+        var stmt = db.prepare("Insert into interests (uid, int_id) values (?,?)");
+        for (var i = 0; i < kol; i++) {
+            stmt.run(id,interests_arr[i]);
+        }
+        stmt.finalize;
     });  
-    
-    
-    
-
-
-
-   
     console.log("Request handler 'addInterest' was called.");
+    console.log("Tat normal");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Add user");
     response.end();
 }
+
+    function deleteUser(response, request){
+        var query = url.parse(request.url).query;
+        var queryObject = queryString.parse(query);
+        var id = queryObject.id;
+        var dbQuery = "DELETE FROM users where id = ?";
+        var dbQueryInterests = "DELETE FROM interests where uid = ?";
+
+        var stmt = db.prepare(dbQuery);
+        console.log(stmt);
+        var stmtI = db.prepare(dbQueryInterests);
+        console.log(stmtI);
+        stmt.run(id);
+        stmtI.run(id);
+        stmt.finalize();
+        stmtI.finalize();
+
+        console.log("GG WP");
+        response.writeHead(200, { "Content-Type": "text/plain" });
+        response.write("Add user");
+        response.end();
+    }
+
 
 
 exports.start = start;
@@ -145,3 +160,4 @@ exports.interests = interests;
 exports.getUsers = getUsers;
 exports.addInterests = addInterests;
 exports.addUser = addUser;
+exports.deleteUser = deleteUser;
