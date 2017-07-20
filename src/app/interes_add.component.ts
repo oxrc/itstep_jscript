@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: [ './interes_add.component.css' ]
 })
 export class Interes_addComponent implements OnInit {
-  area_title:string="Add Interes";
+  area_title:string="Add Interes:";
   interes:string="";
   myColor:string="black";
   input_color_string:string="Repaint color:";
