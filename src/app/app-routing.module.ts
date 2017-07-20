@@ -8,7 +8,7 @@ import { Interes_addComponent }  from './interes_add.component';
 import { User_addComponent }  from './user_add.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/users_get/0', pathMatch: 'full' },
+  { path: '', redirectTo: '/users_get/0/', pathMatch: 'full' },
   { path: 'users_get/:id',  component: Users_getComponent },
   { path: 'user_edit/:id', component: User_editComponent },
   { path: 'interes_add',     component: Interes_addComponent },
