@@ -13,10 +13,6 @@ import {Injectable} from '@angular/core';
   styleUrls: [ './user_add.component.css' ]
 })
 export class User_addComponent implements OnInit {
-/*	<?php
-		foreach ($interests as $key => $value)
-			echo "<option value='{$interests[$key]['id']}'>{$interests[$key]['interes']}</option>";
-	?>*/
 
 	public interests;
     constructor(http: Http) {
