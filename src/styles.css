@@ -13,7 +13,7 @@ body {
   margin: 2em;
 }
 body, input[text], button {
-  color: #888;
+  color: #444;
   font-family: Cambria, Georgia;
 }
 a {
@@ -55,7 +55,7 @@ nav a:hover {
   color: #039be5;
   background-color: #CFD8DC;
 }
-nav a.active {
+nav a:active {
   color: #039be5;
 }
 
@@ -63,3 +63,16 @@ nav a.active {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
