@@ -1,0 +1,16 @@
+<body background="1.jpg">
+<div class="border_half_page" >
+	<div id="content_left" class="text_center">
+	<span>
+		<span style="display: block; margin-top:2%;"><h1>{{area_title}}</h1></span>
+		<span><h2>{{input_interes_string}}</h2> <span [ngStyle]="{'color': myColor}">{{interes}}</span></span>
+		<input [(ngModel)]="interes" id="new_interes" type="text" name="new_interes"/>
+		<input class="a" onclick="add_interes();" id="add_interes_btn" type="submit" value="{{button_add_interes_text}}" />
+		
+		<h2>{{input_color_string}}</h2>
+		<input [(ngModel)]="myColor" value="{{myColor}}" type="text"/><br />
+	</span>
+
+	</div>
+</div>
+</body>
