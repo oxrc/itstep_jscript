@@ -1,13 +1,13 @@
 <template lang="html">
 <div class="page-wrapper">
-   <div class="row">  
+   <div class="row">
     <div class="search_user five columns">
         <form action="" method="post" style="width: 248px;float:right;">
-                <input type="text" placeholder="First Name" />
-                <input type="text" placeholder="Last Name" />
-                <input type="text" placeholder="Age" />
-                <input type="text" placeholder="Telephone" />
-                <input type="text" placeholder="Interest" />
+            <input type="text" placeholder="First Name" />
+            <input type="text" placeholder="Last Name" />
+            <input type="text" placeholder="Age" />
+            <input type="text" placeholder="Telephone" />
+            <input type="text" placeholder="Interest" />
             <button type="submit" class="btn_search"><span class="fa fa-search"></span> Search</button>
         </form>
         <ul>
@@ -30,15 +30,15 @@
                 </tr>
             </thead>
             <tbody>
-                
+
             </tbody>
         </table>
-      
-    </div>
-    
-   
 
-   </div> 
+    </div>
+
+
+
+   </div>
 </div>
 </template>
 

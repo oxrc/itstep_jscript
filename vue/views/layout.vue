@@ -1,4 +1,4 @@
-<template><!DOCTYPE html>
+<template lang="html"><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -11,12 +11,11 @@
     <body id="body">
         {{{app}}}
         {{{script}}}
-        
+
         <script src="/js/ajax.js"></script>
     </body>
 </html>
 </template>
-
 
 <script>
   export default {

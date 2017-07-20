@@ -25,6 +25,10 @@ app.get('/vue', function (req, res) {
   res.render('main');
 });
 
+var initApp = function () {
+  console.log('I have been intialised');
+}
+
 // Add user
 app.get('/vue/user/add', function (req, res) {
   // Setup the variables for 'Add user' page.
@@ -34,6 +38,7 @@ app.get('/vue/user/add', function (req, res) {
       title: 'Add user',
     },
     vue: {
+      created: initApp,
       head: {
         title: pageTitle,
         meta: [
