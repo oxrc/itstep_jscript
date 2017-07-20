@@ -1,4 +1,35 @@
- .a {
+.title{
+  font-size: 19px;
+  margin-top: 49px;
+  color: #aab2bf;
+} 
+
+#new_interes{
+  border-radius: 20px;
+  border:3px solid #7b8391;
+  padding: 6px 0px 6px 0px;
+  font-size: 20px;
+  text-align: center;
+  color: #7b8391;
+  font-style: italic;
+}
+#add_interes_btn{
+  padding: 10px;
+  padding: 11px 37px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all .3s ease;
+  border-radius: 20px;
+  background: none;
+  border:3px solid #7b8391;
+  font-style: italic;
+  font-weight: 700;
+}
+#add_interes_btn:hover{
+  background: #7b8391;
+  color:white;
+}
+.a {
   padding: 4px 10px;
   text-decoration: none;
   margin-top: 10px;
