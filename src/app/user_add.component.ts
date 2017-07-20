@@ -19,12 +19,7 @@ export class User_addComponent implements OnInit {
         http.get('http://127.0.0.1/api/get_interests').map((res: Response) => res.json())
 		.subscribe(res => this.interests = res.interests);
     }	
-	
-//    public interests = [
-//		{ interes: 'Something', id: 21 },
-//		{ interes: 'Another something', id: 24 },
-//		{ interes: 'The anotherest something', id: 18 }
-//    ];
+
   ngOnInit(): void {
   }
 }
