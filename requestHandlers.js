@@ -139,13 +139,14 @@ function addUser(response, request) {
         var dbQueryInterests = "DELETE FROM interests where uid = ?";
 
         var stmt = db.prepare(dbQuery);
-        console.log(stmt);
-        var stmtI = db.prepare(dbQueryInterests);
-        console.log(stmtI);
         stmt.run(id);
-        stmtI.run(id);
         stmt.finalize();
+        console.log(stmt);
+
+        var stmtI = db.prepare(dbQueryInterests);
+        stmtI.run(id);
         stmtI.finalize();
+        console.log(stmtI);
 
         console.log("GG WP");
         response.writeHead(200, { "Content-Type": "text/plain" });
