@@ -8,6 +8,10 @@
     cursor: pointer; 
 
 }
+  .border_half_page{
+    display: flex;
+    justify-content: center;
+  }
 .a:visited, .a:link {
   color: #607D8B;
   outline:none;

@@ -8,8 +8,7 @@ import { Users_getComponent }   from './users_get.component';
 import { User_editComponent }  from './user_edit.component';
 import { Interes_addComponent }  from './interes_add.component';
 import { User_addComponent }  from './user_add.component';
-import { HeroesComponent }      from './heroes.component';
-import { HeroService }          from './hero.service';
+
 
 import { AppRoutingModule }     from './app-routing.module';
 import 'rxjs/Rx';
@@ -26,10 +25,9 @@ import 'rxjs/Rx';
     Users_getComponent,
     User_editComponent,
 	Interes_addComponent,
-	User_addComponent,
-    HeroesComponent
+	User_addComponent
   ],
-  providers: [ HeroService ],
+  providers: [ ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

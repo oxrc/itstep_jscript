@@ -46,6 +46,41 @@ h4 {
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
 }
+
+#content_right{
+  float: right;
+  position: absolute;
+  top: 37px;
+  right: 200px;
+}
+
+#content_left{
+  position: absolute;
+  top:84px;
+  left: 200px;
+}
+
+
+
+input{
+  font-size: 20px;
+  padding: 4px;
+  margin-top: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-style:italic;
+  border: 3px solid  #7b8391;
+}
+
+#interes_list{
+  border-radius: 3px;
+    color: gray;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 900;
+}
+
+
 @media (max-width: 600px) {
   .module {
     font-size: 10px;
