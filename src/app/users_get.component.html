@@ -15,7 +15,7 @@
 		<span>
 			<br>
 			<select id="interes_list" name="interests" multiple="multiple">
-				<option *ngFor="let interes of interests" value="{{interes.id}}">{{interes.interes}}</option>
+				<option *ngFor="let interes of interests" value="{{interes.i_id}}">{{interes.i_name}}</option>
 			</select>
 		</span> <br>
 		<span>
@@ -32,17 +32,17 @@
 		<table>
 			<tbody>
 			<tr>
-				<th>Id:</th>
-				<th>Nick:</th>
-				<th>Age:</th>
-				<th>Phone:</th>
-				<th>Actions:</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Phone</th>
+				<th>Interests</th>
 			</tr>
 
 
-			<tr *ngFor="let user of users" class="five_cells" id="user_ul_{{user.id}}">
+			<tr *ngFor="let user of users_list" class="five_cells" id="user_ul_{{user.id}}">
 				<td>{{user.id}}</td>
-				<td>{{user.nick}}</td>
+				<td>{{user.name}}</td>
 				<td>{{user.age}}</td>
 				<td>{{user.phone}}</td>
 				<td><a (click)="dropUser(user.id)">delete</a>&nbsp;<a rel="nofollow noopener noreferer" target="_blank" [routerLink]="['/user_edit', user.id]">update</a></td>
