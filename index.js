@@ -29,14 +29,24 @@ app.get('/vue', function (req, res) {
 });
 
 app.get('/api/interests', function (req, res) {
-  
   serverHandlers.interests(res);
 });
+
+
+app.get('/api/interests/add', function (req, res) {
+  serverHandlers.addInterests(res, req);
+});
+
 
 
 app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);
 });
+
+app.get('/api/users/delete', function (req, res) {
+  serverHandlers.deleteUser(res, req);
+});
+
 
 // Making the app listen to port 80 for requests.
 app.listen(80, function () {

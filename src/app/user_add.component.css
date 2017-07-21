@@ -26,3 +26,35 @@
   color: #039be5;
 
 }
+
+.title{
+  font-size: 19px;
+  margin-top: 49px;
+  color: #aab2bf;
+} 
+
+
+#btn_add_user{
+    background: none;
+    border:3px solid #7b8391;
+    transition: all .3s ease;
+    cursor: pointer;
+    font-size: 20px;
+  text-align: center;
+  color: #7b8391;
+  font-style: italic;
+}
+#btn_add_user:hover{
+    color: white;
+    background: #7b8391;
+}
+
+input{
+  font-size: 20px;
+  padding: 4px 35px;
+  margin-top: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-style:italic;
+  border: 3px solid  #7b8391;
+}

@@ -36,7 +36,7 @@ export class Users_getComponent implements OnInit {
 
          this.users_list = res;
 
-          console.log(this.users_list);
+          
     });
     }
 	

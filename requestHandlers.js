@@ -206,4 +206,5 @@ exports.start = start;
 exports.interests = interests;
 exports.addInterests = addInterests;
 exports.getUsers = getUsers;
+exports.deleteUser = deleteUser;
 exports.upload = upload;
