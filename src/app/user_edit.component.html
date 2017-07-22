@@ -1,10 +1,16 @@
-<div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div>
-    <label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name" />
-  </div>
+<div>
+ 
+   <div id="form"><br />
+				<input id="nick" placeholder="Name" type="text" name="nick" /><br />
+			
+				<input id="phone" placeholder="Phone" type="text" name="phone"/><br />
+			
+				<input id="age" type="text" placeholder="Age" name="age"/><br />
+			  <br/>
+
+			<input type="submit" id="btn_add_user" value="Edit user" /><br>
+			
+		</div> 
+  
   <button (click)="goBack()">Back</button>
 </div>

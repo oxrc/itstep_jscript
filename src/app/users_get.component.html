@@ -2,7 +2,6 @@
 <div id="content_left" class="text_center">
 	<div id="form"><br>
 		<br>
-		<span class="self_border">User Search:</span> <br><br>
 		<span>
 			 <input id="nick" type="text" name="nick" minlength="3" placeholder="Name" maxlength="30"><br>
 		</span>
@@ -10,19 +9,17 @@
 			 <input id="phone" type="text" name="phone" placeholder="Phone"><br>
 		</span>
 		<span>
-			 <input id="age" type="number" min="6" max="666" name="age"><br>
+			 <input id="age" type="text" placeholder="Age"  name="age"><br>
 		</span>
 		<span>
 			<br>
 			<select id="interes_list" name="interests" multiple="multiple">
-				<option *ngFor="let interes of interests" value="{{interes.id}}">{{interes.interes}}</option>
+				<option *ngFor="let interes of interests" value="{{interes.i_id}}">{{interes.i_name}}</option>
 			</select>
 		</span> <br>
 		<span>
-			<input target="_blank" type="button" value="Add" onclick="window.open('/user/add')">
-			<!--<a target="_blank" href="/user/add">add</a> -->
-			<input onclick="search_user();" type="submit" value="Search!">
-			<button onclick="reset_input();">RESET</button>
+			<input onclick="search_user();" type="submit" id="btn_search" value="Search">
+			<button onclick="reset_input();" id="btn_reset">RESET</button>
 		</span> <br>
 		<span class="alert"></span>
 	</div>
@@ -32,30 +29,34 @@
 		<table>
 			<tbody>
 			<tr>
-				<th>Id:</th>
-				<th>Nick:</th>
-				<th>Age:</th>
-				<th>Phone:</th>
-				<th>Actions:</th>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Phone</th>
+				<th>Interests</th>
+                <th></th>
+                <th></th>
 			</tr>
 
 
-			<tr *ngFor="let user of users" class="five_cells" id="user_ul_{{user.id}}">
+			<tr *ngFor="let user of users_list" class="five_cells" id="user_ul_{{user.id}}">
 				<td>{{user.id}}</td>
-				<td>{{user.nick}}</td>
+				<td>{{user.name}}</td>
 				<td>{{user.age}}</td>
 				<td>{{user.phone}}</td>
-				<td><a (click)="dropUser(user.id)">delete</a>&nbsp;<a rel="nofollow noopener noreferer" target="_blank" [routerLink]="['/user_edit', user.id]">update</a></td>
+                <td>{{user.interests}}</td>
+				<td><a (click)="dropUser(user.id)"><span class="icon-delete">&#10008;</span></a>&nbsp;</td>
+                <td><a rel="nofollow noopener noreferer" target="_blank" [routerLink]="['/user_edit', user.id]"><span class="icon-edit">&#9998;</span> Edit</a></td>
 			</tr>
 			<!--<span *ngFor="let interes of user.interests"class="col-1-4">{{interes}}</span>-->
 		</tbody>
 		</table>
 
 		 <div>
-			 <nav>
-				 <a routerLink="/users_get/{{(this.users_page <= 0 ? 0 : this.users_page - 1)}}" routerLinkActive="active" (click)="get_users(this.users_page - 1)">Prev</a>
-				 <a *ngFor="let page of pages" routerLink="/users_get/{{ page.id }}" routerLinkActive="active" (click)="get_users(page.id)">{{ page.id }}</a>
-				 <a routerLink="/users_get/{{this.users_page + 1}}" routerLinkActive="active" (click)="get_users(this.users_page + 1)">Next</a>
+			 <nav class="navigation">
+				 <a routerLink="/users_get/{{(this.users_page <= 0 ? 0 : this.users_page - 1)}}" routerLinkActive="active" (click)="get_users(this.users_page - 1)" id="btn_prev_pages">&laquo;</a>
+				 <a *ngFor="let page of pages" routerLink="/users_get/{{ page.id }}" id="btn_next_pages" routerLinkActive="active" (click)="get_users(page.id)">{{ page.id }}</a>
+				 <a routerLink="/users_get/{{this.users_page + 1}}" routerLinkActive="active" (click)="get_users(this.users_page + 1)">&raquo;</a>
 			 </nav>
 		 </div>
 	</div>	 

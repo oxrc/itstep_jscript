@@ -15,11 +15,26 @@ import {Injectable} from '@angular/core';
 export class User_addComponent implements OnInit {
 
 	public interests;
+    public users;
     constructor(http: Http) {
-        http.get('http://127.0.0.1/api/get_interests').map((res: Response) => res.json())
-		.subscribe(res => this.interests = res.interests);
-    }	
+        http.get('http://localhost/api/interests').map((res: Response) => res.json())
+		.subscribe(res => {
 
-  ngOnInit(): void {
-  }
+         this.interests = res;
+
+          console.log(this.interests);
+    });	
+     http.get('http://localhost/api/users').map((res: Response) => res.json())
+		.subscribe(res => {
+
+         this.users = res;
+
+          console.log(this.users);
+    });	
+      
+ }
+    
+    ngOnInit(): void {
+      }
 }
+    

@@ -1,10 +1,10 @@
 <div class="border_half_page" >
 	<div id="content_left" class="text_center">
 	<span>
-		<h1 class="title">{{area_title}}</h1><br />
+		
 		<span> <span [ngStyle]="{'color': myColor}">{{interes}}</span></span><br/>
 		<input [(ngModel)]="interes" id="new_interes" placeholder="Name interest" type="text" name="new_interes" />
-		<input class="a" onclick="add_interes();" id="add_interes_btn" type="submit" value="{{button_add_interes_text}}" /><br />
+		<input class="a" (click)="add_interes()"  id="add_interes_btn" type="submit" value="{{button_add_interes_text}}" /><br />
 		<br /><br /><br />
 		<div>
 		{{input_color_string}}<br /><br />

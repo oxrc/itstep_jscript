@@ -27,3 +27,14 @@ button:disabled {
   color: #ccc; 
   cursor: auto;
 }
+
+
+input{
+  font-size: 20px;
+  padding: 4px 35px;
+  margin-top: 10px;
+  border-radius: 20px;
+  text-align: center;
+  font-style:italic;
+  border: 3px solid  #7b8391;
+}
