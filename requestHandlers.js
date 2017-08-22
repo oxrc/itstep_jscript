@@ -155,6 +155,22 @@ function deleteUser(response, request){
     response.end();
 }
 
+function interests(response) {
+    var interestsList = [];
+
+    db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
+        for (row in rows) {
+			interestData = {};
+			interestData['id'] = rows[row].i_id;
+			interestData['name'] = rows[row].i_name;
+			interestsList.push(interestData);
+        }
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(interestsList));
+        response.end();
+    });
+
+}
 function getUsersCount(response, request) {
     db.get("SELECT count(id) as count FROM users", function(err, row) {
         response.writeHead(200, { "Content-Type": "application/json" });
@@ -162,6 +178,16 @@ function getUsersCount(response, request) {
         response.end();
     });
 }
+
+function getUsersCount(response, request) {
+    db.get("SELECT count(id) as count FROM users", function(err, row) {
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(row));
+        response.end();
+    });
+}
+
+
 
 function getUsersByParameters(response, request) {
     var query = url.parse(request.url).query;
@@ -205,6 +231,9 @@ function upload(response) {
 exports.start = start;
 exports.interests = interests;
 exports.addInterests = addInterests;
+exports.addUser = addUser;
 exports.getUsers = getUsers;
 exports.deleteUser = deleteUser;
+exports.interests = interests;
+exports.getUsersCount = getUsersCount;
 exports.upload = upload;
