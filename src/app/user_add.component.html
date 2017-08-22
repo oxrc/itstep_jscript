@@ -1,18 +1,21 @@
 <div class="border_half_page">
 	<div id="content_left" class="text_center">
-		<div id="form"><br />
-				<input id="nick" placeholder="Name" type="text" name="nick" required/><br />
+		<div id="form"><br >
+		    <form>
+				<input id="nick" placeholder="Name" type="text" name="name" [(ngModel)]="user.name" required/><br />
 			
-				<input id="phone" placeholder="Phone" type="text" name="phone"/><br />
+				<input id="phone" placeholder="Phone" type="text" name="phone"  /><br />
 			
 				<input id="age" type="text" placeholder="Age" name="age"/><br />
-			<br/>
-				<select id="interes_list" name="interests" multiple="multiple">
-					<option *ngFor="let interes of interests;let i=index" value="{{interes.i_id}}">{{interes.i_name}}</option>
-				</select>
-		     <br />
-			<input type="submit" id="btn_add_user" value="Add user" /><br>
 			
+				<select id="interes_list" name="interests" multiple="multiple">
+					<option *ngFor="let interes of interests" value="{{interes.id}}">{{interes.name}}</option>
+			    </select>
+
+				<input type="button" id="btn_add_user" value="Add user" (click)="Add()" /><br>
+			</form>
+				
+		
 		</div>
 	</div>
 </div>
