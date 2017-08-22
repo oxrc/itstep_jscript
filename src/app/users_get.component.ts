@@ -15,8 +15,8 @@ export class Users_getComponent implements OnInit {
     public users_list;
 	public interests;
 	public http: Http;
-	public users_count: number = 2;
-	public users_page: number = 0;
+	public users_count: number = 5;
+	public users_page: number = 1;
 	public pages = [];
 	
     constructor(
@@ -36,17 +36,17 @@ export class Users_getComponent implements OnInit {
     }
 	
 	public get_users_count() {
-		return 3; //todo: get users_count from ajax
+		return 20; //todo: get users_count from ajax
 	}
 	
 	public get_users(users_page = this.users_page) {
-		if (this.users_page < 0) {
-			users_page = 0;
+		if (this.users_page < 1) {
+			users_page = 1;
 			this.update_listing();
 		}
 		this.users_page = users_page;
-		this.http.get('http://127.0.0.1/api/get_user/' + this.users_count + '/' + this.users_page).map((res: Response) => res.json())
-			.subscribe(res => this.users = res.users);
+		this.http.get('http://127.0.0.1/api/users/?page=' + this.users_page).map((res: Response) => res.json())
+			.subscribe(res => this.users_list = res);
 		this.update_listing();
 	}
 	
@@ -54,7 +54,7 @@ export class Users_getComponent implements OnInit {
 		let users_count = this.get_users_count();
 		let pages_count = Math.ceil(users_count / this.users_count);
 		this.pages = [];
-		for (var i=0; i < pages_count; i++) {
+		for (var i=1; i < pages_count; i++) {
 			this.pages.push({ id: i });
 		}
 	}
