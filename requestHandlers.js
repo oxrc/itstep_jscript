@@ -45,11 +45,14 @@ function getUsers(response, request) {
 
 // Get the list of all interests.
 function interests(response) {
-    var interestsList = {};
+    var interestsList = [];
 
     db.all("SELECT i_id, i_name from interests_list", function(err, rows) {
         for (row in rows) {
-            interestsList[rows[row].i_id] = rows[row].i_name;
+			interestData = {};
+			interestData['id'] = rows[row].i_id;
+			interestData['name'] = rows[row].i_name;
+			interestsList.push(interestData);
         }
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(interestsList));

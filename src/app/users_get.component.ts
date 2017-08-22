@@ -26,18 +26,13 @@ export class Users_getComponent implements OnInit {
 		) 
     {
 		http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
-			.subscribe(res => this.interests = res.interests);
+			.subscribe(res => {this.interests = res;});
 		this.http = http;
 		this.users_page = Number(this.route.snapshot.params['id']);
 		this.get_users();
         
-        http.get('http://localhost/api/users').map((res: Response) => res.json())
-		.subscribe(res => {
-
-         this.users_list = res;
-
-          
-    });
+        http.get('http://127.0.0.1/api/users').map((res: Response) => res.json())
+			.subscribe(res => {this.users_list = res;});
     }
 	
 	public get_users_count() {
