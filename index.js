@@ -38,6 +38,11 @@ app.get('/api/interests/add', function (req, res) {
 });
 
 
+app.get('/api/users/count', function (req, res) {
+  serverHandlers.getUsersCount(res, req);
+});
+
+
 
 app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);

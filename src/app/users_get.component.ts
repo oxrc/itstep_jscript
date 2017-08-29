@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response, HttpModule } from '@angular/http';
 import {Injectable} from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'my-users_get',
@@ -17,6 +18,7 @@ export class Users_getComponent implements OnInit {
 	public http: Http;
 	public users_count: number = 5;
 	public users_page: number = 1;
+	public all_users_count: number;
 	public pages = [];
 	
     constructor(
@@ -36,7 +38,10 @@ export class Users_getComponent implements OnInit {
     }
 	
 	public get_users_count() {
-		return 20; //todo: get users_count from ajax
+		this.all_users_count = 0;
+		this.http.get('http://127.0.0.1/api/users/count').map((res: Response) => res.json())
+			.subscribe(res => {this.all_users_count = res.usersCount;});
+		return this.all_users_count; //todo: get users_count from ajax
 	}
 	
 	public get_users(users_page = this.users_page) {

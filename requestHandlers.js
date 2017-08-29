@@ -24,9 +24,9 @@ function getUsers(response, request) {
     if (object['page'] == null || object['page'] == 1) {
         offset = 0;
     } else {
-        offset = object['page'];
+        offset = (object['page'] - 1) * 5;
     }
-    var dbQuery = "SELECT u.id, u.name, u.age, u.phone, GROUP_CONCAT(i.int_id, ',') AS interests FROM users u, interests i WHERE u.id = i.uid GROUP BY u.id LIMIT 5 OFFSET " + offset;
+    var dbQuery = "SELECT u.id, u.name, u.age, u.phone, GROUP_CONCAT(i.int_id, ',') AS interests FROM users u, interests i WHERE u.id = i.uid GROUP BY u.id LIMIT " + offset + ", 5";
     db.all(dbQuery, function(err, rows) {
         for (row in rows) {
             userData = {};
@@ -159,7 +159,7 @@ function deleteUser(response, request){
 }
 
 function getUsersCount(response, request) {
-    db.get("SELECT count(id) as count FROM users", function(err, row) {
+    db.get("SELECT count(id) as usersCount FROM users", function(err, row) {
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(row));
         response.end();
@@ -208,6 +208,7 @@ function upload(response) {
 exports.start = start;
 exports.interests = interests;
 exports.addInterests = addInterests;
+exports.getUsersCount = getUsersCount;
 exports.getUsers = getUsers;
 exports.deleteUser = deleteUser;
 exports.upload = upload;
