@@ -15,26 +15,29 @@ import {Injectable} from '@angular/core';
 export class User_addComponent implements OnInit {
 
     public interests; 
-    http:Http;
-    public user = {
-        name: "Josh",
-        age: 34,
-        phone: 783459,
-        interests: 2
+    user = {
+        name: 'Jik',
+        age: 23,
+        phone: 4563453,
+        interest: [2,6,5]
     };
+    http:Http;
+  
+    
     constructor(http: Http) {
        http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
 			.subscribe(res => {this.interests = res;});	
     
       this.http = http;
- }
-
-        Add() {
+    
+     }
+    
+     Add() {
            console.log(this.user); 
-           this.http.post('http://localhost/api/user/add', this.user).subscribe(res => {
+           this.http.get('http://127.0.0.1/api/user/add/?name='+this.user.name+'&age='+this.user.age+'&phone'+this.user.phone+'&interests='+this.user.interest ).subscribe(res => {
                 console.log("Added user");
             });	
-        }
+     }
     
     ngOnInit(): void {
       }

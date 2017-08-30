@@ -59,8 +59,12 @@ export class Users_getComponent implements OnInit {
 		}
 	}
 	
-	public dropUser(id) {
-		this.http.get('http://127.0.0.1/api/drop_user/'+id).map((res: Response) => res.json()).subscribe();
+	public dropUser(id:Number) {
+		this.http.get('http://127.0.0.1/api/user/delete/?id=' + id).subscribe(res => {
+                console.log("Remove user");
+						});
+						
+							
 		this.get_users();
 	}
 

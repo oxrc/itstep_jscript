@@ -62,9 +62,9 @@ function interests(response) {
 function addInterests(response, request) {
     var query = url.parse(request.url).query;
     var queryObject = queryString.parse(query);
-   
+    console.log(query);
     var dbQuery = "INSERT INTO interests_list (i_name) VALUES ('" + queryObject['interest'] + "')";
-    console.log(dbQuery);
+    console.log(queryObject['interest']);
     var stmt = db.prepare(dbQuery);
     stmt.run();  
     stmt.finalize();  
@@ -73,6 +73,8 @@ function addInterests(response, request) {
     response.write("Add interes");
     response.end();
 }
+
+
 
 
 function addUser(response, request) {
@@ -105,7 +107,7 @@ function addUser(response, request) {
          dbQuery += phone + ",";
     }
     dbQuery += ")";
-    
+    console.log(dbQuery);
     var stmt = db.prepare(dbQuery);
     stmt.run();  
     stmt.finalize();
@@ -114,11 +116,13 @@ function addUser(response, request) {
         return parseInt(element,10);
      });
     
-    db.get(dbQueryLastID, function(err,row){
+    db.get(dbQueryLastID, function(err,row,interests_arr){
+
+       
         id = row.id;
         var kol = interests_arr.length;
         var interest;
-        
+        console.log(interests_arr);
         var stmt = db.prepare("Insert into interests (uid, int_id) values (?,?)");
         for (var i = 0; i < kol; i++) {
             stmt.run(id,interests_arr[i]);
@@ -131,6 +135,10 @@ function addUser(response, request) {
     response.write("Add user");
     response.end();
 }
+
+
+
+
 
 function deleteUser(response, request){
     var query = url.parse(request.url).query;
@@ -188,6 +196,42 @@ function getUsersCount(response, request) {
 }
 
 
+function getUsersById(response, request) {
+ 
+     var query = url.parse(request.url).query;
+    var object = queryString.parse(query);
+ 
+     var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+         " FROM users u, interests i WHERE u.id = i.uid AND u.id = " + object.id;
+     db.get(query, function(err, row) {
+         response.writeHead(200, { "Content-Type": "application/json" });
+         response.write(JSON.stringify(row));
+         response.end();
+     });
+ }
+
+
+ function getUsersById(response, ids) {
+      var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+          " FROM users u, interests i WHERE u.id = i.uid AND u.id IN (" + ids + ") GROUP BY u.id";
+     console.log(query);
+      var users = [];
+      db.all(query, function(err, rows) {
+          for (row in rows) {
+                userData['interests'] = rows[row].interests;
+              users.push(userData);
+          }
+ 
+         console.log(users);
+          response.writeHead(200, { "Content-Type": "application/json" });
+          response.write(JSON.stringify(users));
+          response.end();
+         console.log('data sent');
+      });
+  }
+
+
+
 
 function getUsersByParameters(response, request) {
     var query = url.parse(request.url).query;
@@ -236,4 +280,6 @@ exports.getUsers = getUsers;
 exports.deleteUser = deleteUser;
 exports.interests = interests;
 exports.getUsersCount = getUsersCount;
+exports.getUsersById = getUsersById;
+exports.getUsersByParameters = getUsersByParameters;
 exports.upload = upload;

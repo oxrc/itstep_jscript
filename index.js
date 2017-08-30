@@ -42,15 +42,20 @@ app.get('/api/users/count', function (req, res) {
 });
 
 
-app.post('/api/user/add', function (req, res) {
+app.get('/api/user/add', function (req, res) {
   serverHandlers.addUser(res, req);
 });
+
+app.get('/api/user/edit', function (req, res) {
+  serverHandlers.getUsersById(res, req);
+});
+
 
 app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);
 });
 
-app.get('/api/users/delete/:id', function (req, res) {
+app.get('/api/user/delete', function (req, res) {
   serverHandlers.deleteUser(res,req);
 });
 

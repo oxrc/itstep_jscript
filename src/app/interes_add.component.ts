@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Headers, Http, Response, HttpModule } from '@angular/http';
+import { Headers, RequestOptions, Http, Response, HttpModule } from '@angular/http';
 
 
 @Component({
@@ -15,23 +15,23 @@ export class Interes_addComponent implements OnInit {
   input_interes_string:string="Your Interest:";
   button_add_interes_text:string="Add!";
     
-    
-   http: Http;    
-  interes: string = "";
-     headers = new Headers({'Content-Type': 'application/json'});
-   
+     http: Http;    
+     interest = {
+        interest: ""
+     };
+     headers = new Headers({ 'Content-Type': 'text/plain' });
+     options = new RequestOptions({ headers: this.headers });
     
   constructor(http: Http){
-      http.get('http://localhost/api/interests').map((res: Response) => res.json())
-		.subscribe(res => {
-
-          console.log(res);
-    });	
       this.http = http;
   };    
     
   public add_interes(){
-     this.http.post('http://localhost/api/interests/add', JSON.stringify(this.interes), this.headers).map((res: Response) => res.json());
+     this.http.get('http://localhost/api/interests/add/?interest=' + this.interest['interest'])
+               .subscribe(res => {
+                    console.log("Added interes");
+                });
+     console.log(this.interest);
   };    
     
     
