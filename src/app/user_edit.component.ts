@@ -14,7 +14,7 @@ export class User_editComponent  {
  
     id:Number;
     sub:any;
-    public user_edit = [];
+    public user_edit = {};
   constructor(
     private route: ActivatedRoute,
     private http: Http,
@@ -24,8 +24,8 @@ export class User_editComponent  {
           this.id = params['id'];
       });
         
-      this.http.get('http://localhost/api/user/edit/?int_id=' + this.id).map((res: Response) => res.json())
-      .subscribe(res => {this.user_edit = res;}); 
+      this.http.get('http://localhost/api/user/edit?id=' + this.id).map((res: Response) => res.json())
+      .subscribe(res => {this.user_edit = res; console.log(res);}); 
 
       console.log(this.user_edit);
       

@@ -47,7 +47,7 @@ app.get('/api/user/add', function (req, res) {
 });
 
 app.get('/api/user/edit', function (req, res) {
-  serverHandlers.getUsersById(res, req);
+  serverHandlers.getUserById(res, req);
 });
 
 
