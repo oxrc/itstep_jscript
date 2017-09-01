@@ -14,13 +14,12 @@ import {Injectable} from '@angular/core';
 })
 export class User_addComponent implements OnInit {
 
-    public interests; 
-    user = {
-        name: 'Jik',
-        age: 23,
-        phone: 4563453,
-        interest: [2,6,5]
-    };
+    public interests;
+    public name:String = "";
+    public age:Number;
+    public phone:Number; 
+    public interes = []; 
+   
     http:Http;
   
     
@@ -33,8 +32,12 @@ export class User_addComponent implements OnInit {
      }
     
      Add() {
-           console.log(this.user); 
-           this.http.get('http://127.0.0.1/api/user/add?name='+this.user.name+'&age='+this.user.age+'&phone='+this.user.phone+'&interests='+this.user.interest ).subscribe(res => {
+           for(var i=0; i< this.interes.length; i++){
+                this.interes[i] = parseInt(this.interes[i], 10);
+           }
+          
+           
+           this.http.get('http://127.0.0.1/api/user/add?name='+this.name+'&age='+this.age+'&phone='+this.phone+'&interests='+this.interes ).subscribe(res => {
                 console.log("Added user");
             });	
      }

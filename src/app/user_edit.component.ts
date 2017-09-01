@@ -25,17 +25,14 @@ export class User_editComponent  {
       });
         
       this.http.get('http://localhost/api/user/edit?id=' + this.id).map((res: Response) => res.json())
-      .subscribe(res => {this.user_edit = res; console.log(res);}); 
+      .subscribe(res => {this.user_edit = res;}); 
 
-      console.log(this.user_edit);
+      
       
   }
 
   
 
-  goBack(): void {
-    this.location.back();
-  }
 
    ngOnDestroy() {
     this.sub.unsubscribe();
