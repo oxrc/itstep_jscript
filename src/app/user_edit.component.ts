@@ -24,7 +24,7 @@ export class User_editComponent  {
           this.id = params['id'];
       });
         
-      this.http.get('http://localhost/api/user/edit/?int_id=' + this.id).map((res: Response) => res.json())
+      this.http.get('http://localhost/api/user/edit?id=' + this.id).map((res: Response) => res.json())
       .subscribe(res => {this.user_edit = res;}); 
 
       console.log(this.user_edit);

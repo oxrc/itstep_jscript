@@ -34,7 +34,7 @@ export class User_addComponent implements OnInit {
     
      Add() {
            console.log(this.user); 
-           this.http.get('http://127.0.0.1/api/user/add/?name='+this.user.name+'&age='+this.user.age+'&phone'+this.user.phone+'&interests='+this.user.interest ).subscribe(res => {
+           this.http.get('http://127.0.0.1/api/user/add?name='+this.user.name+'&age='+this.user.age+'&phone='+this.user.phone+'&interests='+this.user.interest ).subscribe(res => {
                 console.log("Added user");
             });	
      }

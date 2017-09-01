@@ -115,21 +115,26 @@ function addUser(response, request) {
         var interests_arr =  queryObject.interests.split(",").map(function(element){
         return parseInt(element,10);
      });
-    
-    db.get(dbQueryLastID, function(err,row,interests_arr){
-
+    console.log(interests_arr);
+   
+     db.get(dbQueryLastID, function(err,row){
+//  var interests_arr =  queryObject.interests.split(",").map(function(element){
+//         return parseInt(element,10);
+//      });
+  console.log(interests_arr);
        
         id = row.id;
+          console.log(id);
         var kol = interests_arr.length;
         var interest;
-        console.log(interests_arr);
+      
         var stmt = db.prepare("Insert into interests (uid, int_id) values (?,?)");
         for (var i = 0; i < kol; i++) {
             stmt.run(id,interests_arr[i]);
         }
         stmt.finalize;
     });  
-    console.log("Request handler 'addInterest' was called.");
+   // console.log("Request handler 'addInterest' was called.");
     console.log("Tat normal");
     response.writeHead(200, { "Content-Type": "text/plain" });
     response.write("Add user");
@@ -209,26 +214,6 @@ function getUsersById(response, request) {
          response.end();
      });
  }
-
-
- function getUsersById(response, ids) {
-      var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
-          " FROM users u, interests i WHERE u.id = i.uid AND u.id IN (" + ids + ") GROUP BY u.id";
-     console.log(query);
-      var users = [];
-      db.all(query, function(err, rows) {
-          for (row in rows) {
-                userData['interests'] = rows[row].interests;
-              users.push(userData);
-          }
- 
-         console.log(users);
-          response.writeHead(200, { "Content-Type": "application/json" });
-          response.write(JSON.stringify(users));
-          response.end();
-         console.log('data sent');
-      });
-  }
 
 
 
