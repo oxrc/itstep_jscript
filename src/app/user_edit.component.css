@@ -28,7 +28,7 @@ button:disabled {
   cursor: auto;
 }
 
-
+input[type=submit]{cursor: pointer;}
 input{
   font-size: 20px;
   padding: 4px 35px;
@@ -37,4 +37,5 @@ input{
   text-align: center;
   font-style:italic;
   border: 3px solid  #7b8391;
+  
 }

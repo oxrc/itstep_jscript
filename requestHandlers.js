@@ -201,22 +201,22 @@ function getUsersCount(response, request) {
 }
 
 
-function getUsersById(response, request) {
+function getUserById(response, request) {
  
      var query = url.parse(request.url).query;
     var object = queryString.parse(query);
- 
+ console.log(object.id);
+
      var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
          " FROM users u, interests i WHERE u.id = i.uid AND u.id = " + object.id;
+         
      db.get(query, function(err, row) {
+          console.log(row);
          response.writeHead(200, { "Content-Type": "application/json" });
          response.write(JSON.stringify(row));
          response.end();
      });
  }
-
-
-
 
 function getUsersByParameters(response, request) {
     var query = url.parse(request.url).query;
@@ -246,10 +246,7 @@ function getUsersByParameters(response, request) {
         }
         getUsersById(response, ids);
     });
-
 }
-
-
 
 function upload(response) {
   console.log("Request handler 'upload' was called.");
@@ -265,6 +262,6 @@ exports.getUsers = getUsers;
 exports.deleteUser = deleteUser;
 exports.interests = interests;
 exports.getUsersCount = getUsersCount;
-exports.getUsersById = getUsersById;
+exports.getUserById = getUserById;
 exports.getUsersByParameters = getUsersByParameters;
 exports.upload = upload;
