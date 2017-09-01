@@ -2,10 +2,11 @@
 	<div id="content_left" class="text_center">
 		<div id="form"><br >
 		    <form>
-				<input id="nick" placeholder="Name" type="text" name="name" [(ngModel)]="name" required/><br />
-				<input id="phone" placeholder="Phone" type="text" name="phone" [(ngModel)]="age" /><br />
-				<input id="age" type="text" placeholder="Age" name="age"/><br />
-				<select id="interes_list" name="interests" multiple="multiple">
+				<input [(ngModel)]="name" id="nick" placeholder="Name" type="text" name="name"  required/><br />
+				<input  [(ngModel)]="age" id="age" type="text" placeholder="Age" name="age" /><br />
+				<input [(ngModel)]="phone" id="phone" placeholder="Phone" type="text" name="phone"  /><br />
+				
+				<select [(ngModel)]="interes" type="number" id="interes_list" name="interests" multiple="multiple" >
 					<option *ngFor="let interes of interests" value="{{interes.id}}">{{interes.name}}</option>
 			    </select>
 				<input type="button" id="btn_add_user" value="Add user" (click)="Add()" /><br>
