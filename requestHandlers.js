@@ -218,6 +218,8 @@ function getUserById(response, request) {
      });
  }
 
+
+
 function getUsersByParameters(response, request) {
     var query = url.parse(request.url).query;
     var object = queryString.parse(query);
@@ -245,6 +247,26 @@ function getUsersByParameters(response, request) {
             ids.push(rows[row].id);
         }
         getUsersById(response, ids);
+    });
+}
+
+function getUsersById(response, ids) {
+    var query = "SELECT u.id, u.name, u.age, u.phone, group_concat(i.int_id, ',') as interests" +
+        " FROM users u, interests i WHERE u.id = i.uid AND u.id IN (" + ids + ") GROUP BY u.id";
+    var users = [];
+    db.all(query, function(err, rows) {
+        for (row in rows) {
+            var userData = {};
+            userData['id'] = rows[row].id;
+            userData['name'] = rows[row].name;
+            userData['age'] = rows[row].age;
+            userData['phone'] = rows[row].phone;
+            userData['interests'] = rows[row].interests;
+            users.push(userData);
+        }
+        response.writeHead(200, { "Content-Type": "application/json" });
+        response.write(JSON.stringify(users));
+        response.end();
     });
 }
 
