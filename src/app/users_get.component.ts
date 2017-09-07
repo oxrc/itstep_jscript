@@ -18,7 +18,18 @@ export class Users_getComponent implements OnInit {
 	public users_count: number = 2;
 	public users_page: number = 0;
 	public pages = [];
-	
+
+
+	//search: variables
+	public search_name = '';
+	public search_age:Number;
+	public search_phone:Number;
+	public search_interests:Number[];
+	public search_result = {};
+
+
+
+
     constructor(
 		private route: ActivatedRoute,
         private router: Router,
@@ -27,6 +38,7 @@ export class Users_getComponent implements OnInit {
     {
 		http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
 			.subscribe(res => {this.interests = res;});
+			
 		this.http = http;
 		this.users_page = Number(this.route.snapshot.params['id']);
 		this.get_users();
@@ -68,6 +80,25 @@ export class Users_getComponent implements OnInit {
 		this.get_users();
 	}
 
+	 public Search() {
+		    var URL = "http://localhost/api/user/search?q";
+				if(this.search_name != ''){
+					   URL += "&name=" + this.search_name;
+				}
+				 if(this.search_age != null){
+						URL += "&age=" + this.search_age;
+				}
+				else if(this.search_phone != null){
+					URL += "&phone=" + this.search_phone;
+				}	
+				else if (this.search_interests != null){
+					URL += "&interests=" + this.search_interests;
+				}
+				this.http.get(URL).map((res: Response) => res.json())
+					 .subscribe(res => {this.search_result = res;});
+					  
+						
+	 }
 	
   ngOnInit(): void {
 	  

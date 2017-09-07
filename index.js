@@ -55,6 +55,10 @@ app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);
 });
 
+app.get('/api/user/search', function (req, res) {
+  serverHandlers.getUsersByParameters(res, req);
+});
+
 app.get('/api/user/delete', function (req, res) {
   serverHandlers.deleteUser(res,req);
 });
