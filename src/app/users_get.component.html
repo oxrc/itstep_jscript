@@ -40,7 +40,7 @@
 			</tr>
 
 
-			<tr *ngFor="let user of users_list" class="five_cells" id="user_ul_{{user.id}}">
+			<tr *ngFor="let user of users_list | filter:search_name" class="five_cells" id="user_ul_{{user.id}}">
 				<td>{{user.id}}</td>
 				<td>{{user.name}}</td>
 				<td>{{user.age}}</td>
