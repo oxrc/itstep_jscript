@@ -19,7 +19,9 @@ export class Users_getComponent implements OnInit {
 	public users_count: number = 5;
 	public users_page: number = 1;
 	public all_users_count: number;
+	public pages_count: number;
 	public pages = [];
+	public promisedData: Promise<any>;
 	
     constructor(
 		private route: ActivatedRoute,
@@ -39,27 +41,33 @@ export class Users_getComponent implements OnInit {
 	
 	public get_users_count() {
 		this.all_users_count = 0;
-		this.http.get('http://127.0.0.1/api/users/count').map((res: Response) => res.json())
-			.subscribe(res => {this.all_users_count = res.usersCount;});
-		return this.all_users_count; //todo: get users_count from ajax
+		//this.promisedData = new Promise(resolve => {
+			this.http.get('http://127.0.0.1/api/users/count').map((res: Response) => res.json())
+				.subscribe(res => {this.all_users_count = res.usersCount; this.update_listing();});
+		//});
+		//return this.all_users_count; //todo: get users_count from ajax
+		//return;
 	}
 	
 	public get_users(users_page = this.users_page) {
+		if (this.pages_count < users_page)
+			return;
 		if (this.users_page < 1) {
 			users_page = 1;
-			this.update_listing();
+			this.get_users_count();
+			//.then(this.update_listing(), function (Error) {console.log('problem')});
 		}
 		this.users_page = users_page;
 		this.http.get('http://127.0.0.1/api/users/?page=' + this.users_page).map((res: Response) => res.json())
 			.subscribe(res => this.users_list = res);
-		this.update_listing();
+		this.get_users_count();
+		//.then(this.update_listing(),  function (Error) {console.log('problem')});
 	}
 	
 	public update_listing() {
-		let users_count = this.get_users_count();
-		let pages_count = Math.ceil(users_count / this.users_count);
+		this.pages_count = Math.ceil(this.all_users_count / this.users_count);
 		this.pages = [];
-		for (var i=1; i < pages_count; i++) {
+		for (var i=1; i <= this.pages_count; i++) {
 			this.pages.push({ id: i });
 		}
 	}

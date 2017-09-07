@@ -54,9 +54,9 @@
 
 		 <div>
 			 <nav class="navigation">
-				 <a routerLink="/users_get/{{(this.users_page <= 1 ? 1 : this.users_page)}}" routerLinkActive="active" (click)="get_users(this.users_page - 1)" id="btn_prev_pages">&laquo;</a>
+				 <a routerLink="/users_get/{{(this.users_page <= 1 ? 1 : this.users_page -1)}}" routerLinkActive="active" (click)="get_users(this.users_page - 1)" id="btn_prev_pages">&laquo;</a>
 				 <a *ngFor="let page of pages" routerLink="/users_get/{{ page.id }}" id="btn_next_pages" routerLinkActive="active" (click)="get_users(page.id)">{{ page.id }}</a>
-				 <a routerLink="/users_get/{{this.users_page + 1}}" routerLinkActive="active" (click)="get_users(this.users_page + 1)">&raquo;</a>
+				 <a routerLink="/users_get/{{this.pages_count > this.users_page ? this.users_page + 1 : this.users_page}}" routerLinkActive="active" (click)="get_users(this.users_page + 1)">&raquo;</a>
 			 </nav>
 		 </div>
 	</div>	 
