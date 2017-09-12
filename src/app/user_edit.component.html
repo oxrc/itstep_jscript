@@ -1,16 +1,23 @@
 <div>
  
    <div id="form"><br />
-				<input id="nick" placeholder="Name" type="text" name="nick" /><br />
+				<input id="nick" placeholder="Name" type="text" name="nick" value="{{user_edit.name}}" /><br />
 			
-				<input id="phone" placeholder="Phone" type="text" name="phone"/><br />
+				<input id="phone" placeholder="Phone" type="text" name="phone" value="{{user_edit.phone}}" /><br />
 			
-				<input id="age" type="text" placeholder="Age" name="age"/><br />
+				<input id="age" type="text" placeholder="Age" name="age" value="{{user_edit.age}}"/><br />
+
+				<select id="interes_list" name="interests" multiple="multiple">
+					<option>{{user_edit.interests}}</option>
+			    </select>
 			  <br/>
 
 			<input type="submit" id="btn_add_user" value="Edit user" /><br>
 			
 		</div> 
   
-  <button (click)="goBack()">Back</button>
+
+	
+
+	
 </div>

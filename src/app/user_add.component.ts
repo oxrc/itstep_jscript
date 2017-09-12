@@ -14,25 +14,33 @@ import {Injectable} from '@angular/core';
 })
 export class User_addComponent implements OnInit {
 
-	public interests;
-    public users;
+    public interests;
+    public name:String = "";
+    public age:Number;
+    public phone:Number; 
+    public interes = []; 
+   
+    http:Http;
+  
+    
     constructor(http: Http) {
-        http.get('http://localhost/api/interests').map((res: Response) => res.json())
-		.subscribe(res => {
-
-         this.interests = res;
-
-          console.log(this.interests);
-    });	
-     http.get('http://localhost/api/users').map((res: Response) => res.json())
-		.subscribe(res => {
-
-         this.users = res;
-
-          console.log(this.users);
-    });	
-      
- }
+       http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
+			.subscribe(res => {this.interests = res;});	
+    
+      this.http = http;
+    
+     }
+    
+     Add() {
+           for(var i=0; i< this.interes.length; i++){
+                this.interes[i] = parseInt(this.interes[i], 10);
+           }
+          
+           
+           this.http.get('http://127.0.0.1/api/user/add?name='+this.name+'&age='+this.age+'&phone='+this.phone+'&interests='+this.interes ).subscribe(res => {
+                console.log("Added user");
+            });	
+     }
     
     ngOnInit(): void {
       }

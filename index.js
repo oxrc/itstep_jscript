@@ -37,6 +37,18 @@ app.get('/api/interests/add', function (req, res) {
   serverHandlers.addInterests(res, req);
 });
 
+app.get('/api/users/count', function (req, res) {
+  serverHandlers.getUsersCount(res, req);
+});
+
+
+app.get('/api/user/add', function (req, res) {
+  serverHandlers.addUser(res, req);
+});
+
+app.get('/api/user/edit', function (req, res) {
+  serverHandlers.getUserById(res, req);
+});
 
 app.get('/api/users/count', function (req, res) {
   serverHandlers.getUsersCount(res, req);
@@ -48,8 +60,12 @@ app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);
 });
 
-app.get('/api/users/delete', function (req, res) {
-  serverHandlers.deleteUser(res, req);
+app.get('/api/user/search', function (req, res) {
+  serverHandlers.getUsersByParameters(res, req);
+});
+
+app.get('/api/user/delete', function (req, res) {
+  serverHandlers.deleteUser(res,req);
 });
 
 

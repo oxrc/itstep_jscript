@@ -4,6 +4,7 @@ import { Http, Response, HttpModule } from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
+
 @Component({
   selector: 'my-users_get',
   templateUrl: './users_get.component.html',
@@ -21,8 +22,23 @@ export class Users_getComponent implements OnInit {
 	public all_users_count: number;
 	public pages_count: number;
 	public pages = [];
+<<<<<<< HEAD
 	public promisedData: Promise<any>;
 	
+=======
+
+
+	//search: variables
+	public search_name = '';
+	public search_age:Number;
+	public search_phone:Number;
+	public search_interests:Number[];
+	public search_result = {};
+
+
+
+
+>>>>>>> origin/angular
     constructor(
 		private route: ActivatedRoute,
         private router: Router,
@@ -31,6 +47,10 @@ export class Users_getComponent implements OnInit {
     {
 		http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
 			.subscribe(res => {this.interests = res;});
+<<<<<<< HEAD
+=======
+			
+>>>>>>> origin/angular
 		this.http = http;
 		this.users_page = Number(this.route.snapshot.params['id']);
 		this.get_users();
@@ -72,11 +92,34 @@ export class Users_getComponent implements OnInit {
 		}
 	}
 	
-	public dropUser(id) {
-		this.http.get('http://127.0.0.1/api/drop_user/'+id).map((res: Response) => res.json()).subscribe();
+	public dropUser(id:Number) {
+		this.http.get('http://127.0.0.1/api/user/delete/?id=' + id).subscribe(res => {
+                console.log("Remove user");
+						});
+						
+							
 		this.get_users();
 	}
 
+	 public Search() {
+		    var URL = "http://localhost/api/user/search?q";
+				if(this.search_name != ''){
+					   URL += "&name=" + this.search_name;
+				}
+				 if(this.search_age != null){
+						URL += "&age=" + this.search_age;
+				}
+				else if(this.search_phone != null){
+					URL += "&phone=" + this.search_phone;
+				}	
+				else if (this.search_interests != null){
+					URL += "&interests=" + this.search_interests;
+				}
+				this.http.get(URL).map((res: Response) => res.json())
+					 .subscribe(res => {this.search_result = res;});
+					  
+						
+	 }
 	
   ngOnInit(): void {
 	  
