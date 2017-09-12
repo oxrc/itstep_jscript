@@ -47,10 +47,7 @@ export class Users_getComponent implements OnInit {
     {
 		http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
 			.subscribe(res => {this.interests = res;});
-<<<<<<< HEAD
-=======
-			
->>>>>>> origin/angular
+
 		this.http = http;
 		this.users_page = Number(this.route.snapshot.params['id']);
 		this.get_users();
