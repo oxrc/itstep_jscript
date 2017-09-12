@@ -22,10 +22,10 @@ export class Users_getComponent implements OnInit {
 	public all_users_count: number;
 	public pages_count: number;
 	public pages = [];
-<<<<<<< HEAD
+
 	public promisedData: Promise<any>;
 	
-=======
+
 
 
 	//search: variables
@@ -38,7 +38,7 @@ export class Users_getComponent implements OnInit {
 
 
 
->>>>>>> origin/angular
+
     constructor(
 		private route: ActivatedRoute,
         private router: Router,
