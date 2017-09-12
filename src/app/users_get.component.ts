@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response, HttpModule } from '@angular/http';
 import {Injectable} from '@angular/core';
 
+
 @Component({
   selector: 'my-users_get',
   templateUrl: './users_get.component.html',
