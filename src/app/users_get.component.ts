@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http, Response, HttpModule } from '@angular/http';
 import {Injectable} from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
 
 @Component({
@@ -16,9 +17,15 @@ export class Users_getComponent implements OnInit {
     public users_list;
 	public interests;
 	public http: Http;
-	public users_count: number = 2;
-	public users_page: number = 0;
+	public users_count: number = 5;
+	public users_page: number = 1;
+	public all_users_count: number;
+	public pages_count: number;
 	public pages = [];
+<<<<<<< HEAD
+	public promisedData: Promise<any>;
+	
+=======
 
 
 	//search: variables
@@ -31,6 +38,7 @@ export class Users_getComponent implements OnInit {
 
 
 
+>>>>>>> origin/angular
     constructor(
 		private route: ActivatedRoute,
         private router: Router,
@@ -39,7 +47,7 @@ export class Users_getComponent implements OnInit {
     {
 		http.get('http://127.0.0.1/api/interests').map((res: Response) => res.json())
 			.subscribe(res => {this.interests = res;});
-			
+
 		this.http = http;
 		this.users_page = Number(this.route.snapshot.params['id']);
 		this.get_users();
@@ -49,25 +57,34 @@ export class Users_getComponent implements OnInit {
     }
 	
 	public get_users_count() {
-		return 3; //todo: get users_count from ajax
+		this.all_users_count = 0;
+		//this.promisedData = new Promise(resolve => {
+			this.http.get('http://127.0.0.1/api/users/count').map((res: Response) => res.json())
+				.subscribe(res => {this.all_users_count = res.usersCount; this.update_listing();});
+		//});
+		//return this.all_users_count; //todo: get users_count from ajax
+		//return;
 	}
 	
 	public get_users(users_page = this.users_page) {
-		if (this.users_page < 0) {
-			users_page = 0;
-			this.update_listing();
+		if (this.pages_count < users_page)
+			return;
+		if (this.users_page < 1) {
+			users_page = 1;
+			this.get_users_count();
+			//.then(this.update_listing(), function (Error) {console.log('problem')});
 		}
 		this.users_page = users_page;
-		this.http.get('http://127.0.0.1/api/get_user/' + this.users_count + '/' + this.users_page).map((res: Response) => res.json())
-			.subscribe(res => this.users = res.users);
-		this.update_listing();
+		this.http.get('http://127.0.0.1/api/users/?page=' + this.users_page).map((res: Response) => res.json())
+			.subscribe(res => this.users_list = res);
+		this.get_users_count();
+		//.then(this.update_listing(),  function (Error) {console.log('problem')});
 	}
 	
 	public update_listing() {
-		let users_count = this.get_users_count();
-		let pages_count = Math.ceil(users_count / this.users_count);
+		this.pages_count = Math.ceil(this.all_users_count / this.users_count);
 		this.pages = [];
-		for (var i=0; i < pages_count; i++) {
+		for (var i=1; i <= this.pages_count; i++) {
 			this.pages.push({ id: i });
 		}
 	}

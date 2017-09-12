@@ -50,6 +50,11 @@ app.get('/api/user/edit', function (req, res) {
   serverHandlers.getUserById(res, req);
 });
 
+app.get('/api/users/count', function (req, res) {
+  serverHandlers.getUsersCount(res, req);
+});
+
+
 
 app.get('/api/users', function (req, res) {
   serverHandlers.getUsers(res, req);
