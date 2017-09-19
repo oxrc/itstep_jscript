@@ -17,6 +17,7 @@ handle["/api/users/edit"] = requestHandlers.editUser;
 handle["/api/users/delete"] = requestHandlers.deleteUser;
 handle["/api/users/search"] = requestHandlers.getUsersByParameters;
 handle["/api/users/get"] = requestHandlers.getUsersById;
+handle['api/users/login'] = login.login;
 
 server.start(router.route, handle);
 
