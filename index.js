@@ -1,6 +1,7 @@
 var server = require('./server');
 var router = require('./router');
 var requestHandlers = require("./requestHandlers");
+var login = require("./login");
 var express = require("express");
 var app = express;
 
@@ -17,7 +18,7 @@ handle["/api/users/edit"] = requestHandlers.editUser;
 handle["/api/users/delete"] = requestHandlers.deleteUser;
 handle["/api/users/search"] = requestHandlers.getUsersByParameters;
 handle["/api/users/get"] = requestHandlers.getUsersById;
-handle['api/users/login'] = login.login;
+handle['api/users/login'] = login.loginUser;
 
 server.start(router.route, handle);
 
