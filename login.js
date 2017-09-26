@@ -16,7 +16,20 @@ var users = [
 ];
 
 function logoutUser(response, request) {
+    var query = url.parse(request.url).query;
+    data = queryString.parse(query);
+    var responce = {};
+    var query = "UPDATE login_data SET status = 0 WHERE uid =" + data.uid;
+    db.run(query, function(err, res) {
+        if (err) {
+            responce.logout = "false";
+        }
+        responce.logout = "true";
 
+    });
+    response.writeHead(200, { "Content-Type": "application/json" });
+    response.write(JSON.stringify(responce));
+    response.end();
 }
 
 function loginUser(response, request) {
@@ -39,7 +52,7 @@ function loginUser(response, request) {
         var responce = {};
         if (err) {
 
-            return responce.login = "false";
+            responce.login = "false";
         }
         if (data.password === res.password || bcrypt.compareSync(data.password, res.password)) {
             var query = "UPDATE login_data SET status = 0 WHERE uid =" + res.uid;
@@ -47,11 +60,11 @@ function loginUser(response, request) {
                 if (err) {
                     return console.error(err.message);
                 }
-                return responce.autorization = "true";
+                responce.autorization = "true";
 
             });
         } else {
-            return responce.password = "false";
+            responce.password = "false";
         }
         response.writeHead(200, { "Content-Type": "application/json" });
         response.write(JSON.stringify(responce));
