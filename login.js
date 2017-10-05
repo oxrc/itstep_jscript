@@ -49,7 +49,9 @@ function loginUser(response, request) {
             console.log(query);
             var responseObject = { login: false, password: false };
             db.get(query, function(err, res) {
-                if (err) {
+                console.log(res);
+                if (res == undefined) {
+                    console.log(res)
                     returnResponseLoginAction(response, responseObject);
                 } else {
                     responseObject.login = true;
